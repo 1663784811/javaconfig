@@ -91,6 +91,8 @@ D:\项目\config\src\main\java\cn\cyyaw\config\table\controller\JShoolController
 D:\项目\config\src\main\java\cn\cyyaw\config\table\table\entityconst\CComponentsConst.java
 D:\项目\config\src\main\java\cn\cyyaw\config\table\table\entityconst\CPageConst.java
 D:\项目\config\src\main\java\cn\cyyaw\config\table\table\entity\TStatistics.java
+D:\项目\config\src\main\java\cn\cyyaw\config\config\exception\CustomException.java
+D:\项目\config\src\main\java\cn\cyyaw\config\config\exception\WebErrCodeEnum.java
 D:\项目\config\src\main\java\cn\cyyaw\config\table\table\dao\PPageComponentsDao.java
 D:\项目\config\src\main\java\cn\cyyaw\config\table\table\dao\CFieldDao.java
 D:\项目\config\src\main\java\cn\cyyaw\config\table\table\dao\CTableDao.java

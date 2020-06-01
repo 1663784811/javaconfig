@@ -27,5 +27,9 @@ shiro:
   hashIterations: 24
 
 
-
+web:
+  resources:
+    photo:
+      uploadPath: /usr/local/nginx/photo
+      BaseUrl: http://file.dishijiaoyu.com
 

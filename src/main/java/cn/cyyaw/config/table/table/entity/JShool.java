@@ -46,7 +46,9 @@ public class JShool {
     @Column(name = "img", columnDefinition = "varchar(255) COMMENT '学校图片'")
     private String img;
 
-
+    @Basic
+    @Column(name = "introduction", columnDefinition = "varchar(255) COMMENT '简介'")
+    private String introduction;
 }
 
 
