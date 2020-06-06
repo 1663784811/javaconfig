@@ -36,7 +36,13 @@ public class CSql implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
+    @Basic
+    @Column(name = "sqlcontent", columnDefinition = "text COMMENT 'sql内容'")
+    private String sqlcontent;
 
 
+    @Basic
+    @Column(name = "countsql", columnDefinition = "text COMMENT 'count数量'")
+    private String countsql;
 
 }
