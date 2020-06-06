@@ -98,7 +98,7 @@ public class CField implements Serializable{
     @Column(name="regstr", columnDefinition = "varchar(255) COMMENT '正则表达式'")
     private String regstr;
     @Basic
-    @Column(name="tid", columnDefinition = "varchar(45) COMMENT 'tid'")
+    @Column(name="tid", unique = true, columnDefinition = "varchar(45) COMMENT 'tid'")
     private String tid;
     @Basic
     @Column(name="title", columnDefinition = "varchar(255) COMMENT '名称'")

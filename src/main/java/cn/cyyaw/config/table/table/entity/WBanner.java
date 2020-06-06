@@ -21,7 +21,7 @@ public class WBanner {
     @Column(name = "id", length = 10, columnDefinition = "int COMMENT 'id'")
     private Integer id;
     @Basic
-    @Column(name = "tid", length = 32, columnDefinition = "varchar(32) not null COMMENT 'tid'")
+    @Column(name = "tid", unique = true, length = 32, columnDefinition = "varchar(32) not null COMMENT 'tid'")
     private String tid;
     @Basic
     @Column(name = "del", length = 10, columnDefinition = "int COMMENT '是否删除{0:否,1:是}'")

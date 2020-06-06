@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "p_page")
 @org.hibernate.annotations.Table(appliesTo = "p_page", comment = "页面配置表")
 public class PPage implements Serializable {
-    private static final long serialVersionUID = 1589122890183865L;
+    private static final long serialVersionUID = 15891722890183865L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic

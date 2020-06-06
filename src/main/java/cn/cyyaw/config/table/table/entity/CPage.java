@@ -39,6 +39,6 @@ public class CPage implements Serializable {
     @Column(name = "pid", columnDefinition = "varchar(45) COMMENT '父级ID'")
     private String pid;
     @Basic
-    @Column(name = "tid", columnDefinition = "varchar(45) COMMENT 'tid'")
+    @Column(name = "tid", unique = true, columnDefinition = "varchar(45) COMMENT 'tid'")
     private String tid;
 }

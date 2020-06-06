@@ -32,7 +32,7 @@ public class CTable implements Serializable {
     @Column(name = "tabletype", columnDefinition = "varchar(255) COMMENT '类型'")
     private String tabletype;
     @Basic
-    @Column(name = "tid", columnDefinition = "varchar(45) COMMENT ''")
+    @Column(name = "tid", unique = true, columnDefinition = "varchar(45) COMMENT ''")
     private String tid;
     @Basic
     @Column(name = "url", columnDefinition = "varchar(255) COMMENT '连接url'")

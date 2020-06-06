@@ -69,6 +69,6 @@ public class CPageComponents implements Serializable {
     @Column(name = "tag", columnDefinition = "text COMMENT '标签'")
     private String tag;
     @Basic
-    @Column(name = "tid", columnDefinition = "varchar(45) COMMENT 'tid'")
+    @Column(name = "tid", unique = true, columnDefinition = "varchar(45) COMMENT 'tid'")
     private String tid;
 }

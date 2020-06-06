@@ -30,6 +30,6 @@ shiro:
 web:
   resources:
     photo:
-      uploadPath: /usr/local/nginx/photo
+      uploadPath: /etc/nginx/html/file
       BaseUrl: http://file.dishijiaoyu.com
 
