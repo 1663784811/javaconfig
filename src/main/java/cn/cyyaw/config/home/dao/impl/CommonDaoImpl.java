@@ -3,6 +3,7 @@ package cn.cyyaw.config.home.dao.impl;
 import cn.cyyaw.common.util.SqlUtils;
 import cn.cyyaw.config.home.dao.CommonDao;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Repository
 public class CommonDaoImpl implements CommonDao {
 
@@ -30,6 +32,8 @@ public class CommonDaoImpl implements CommonDao {
             // 第二步：替换字符串
             String querySql = SqlUtils.explainSql(sqlcontent, json);
             String countSql = SqlUtils.explainSql(countsql, json);
+            log.info("统计sql语句: {} ",countSql);
+            log.info("执行sql语句: {} ",querySql);
             //第三步：执行sql
             Integer total = jdbcTemplate.queryForObject(countSql,Integer.class);
             List<Map<String, Object>> data = jdbcTemplate.queryForList(querySql);
