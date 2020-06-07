@@ -1,8 +1,10 @@
 package cn.cyyaw.config.home.controller;
 
+import cn.cyyaw.common.util.RequestUtils;
 import cn.cyyaw.config.home.service.CommonService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,9 +31,11 @@ public class CommonController {
      * @return
      */
     @RequestMapping("/query")
-    public Map<String, Object> query(String _code ) {
+    public Map<String, Object> query(@RequestBody Map<String,Object> map) {
         JSONObject json = new JSONObject();
-        json.put("_code", _code);
+        for (String key: map.keySet()) {
+            json.put(key,map.get(key));
+        }
         return commonService.query(json);
     }
 
@@ -59,4 +64,7 @@ public class CommonController {
         map.put("msg", "ok");
         return map;
     }
+
+
+
 }

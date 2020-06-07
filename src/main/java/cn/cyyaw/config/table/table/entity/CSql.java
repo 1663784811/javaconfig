@@ -37,9 +37,12 @@ public class CSql implements Serializable {
     private Date createtime;
 
     @Basic
+    @Column(name = "name", length = 32,  unique = true, columnDefinition = "varchar(32) not null COMMENT '名称'")
+    private String name;
+
+    @Basic
     @Column(name = "sqlcontent", columnDefinition = "text COMMENT 'sql内容'")
     private String sqlcontent;
-
 
     @Basic
     @Column(name = "countsql", columnDefinition = "text COMMENT 'count数量'")
