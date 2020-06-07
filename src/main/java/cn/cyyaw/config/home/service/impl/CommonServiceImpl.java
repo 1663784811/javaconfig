@@ -21,7 +21,7 @@ public class CommonServiceImpl implements CommonService {
     }
 
     @Override
-    public List<Map<String, Object>> update(JSONObject json) {
+    public Map<String, Object> update(JSONObject json) {
         return commonDao.update(json);
     }
 

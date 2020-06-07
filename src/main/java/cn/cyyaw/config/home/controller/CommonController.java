@@ -43,13 +43,12 @@ public class CommonController {
      * 通用修改或添加
      */
     @RequestMapping("/update")
-    public Map<String, Object> update() {
+    public Map<String, Object> update(@RequestBody Map<String,Object> map) {
         JSONObject json = new JSONObject();
-        Map<String, Object> map = new HashMap<>();
-        map.put("code", 0);
-        map.put("data", commonService.update(json));
-        map.put("msg", "ok");
-        return map;
+        for (String key: map.keySet()) {
+            json.put(key,map.get(key));
+        }
+        return commonService.update(json);
     }
 
     /**

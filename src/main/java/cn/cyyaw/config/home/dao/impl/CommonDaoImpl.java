@@ -34,13 +34,13 @@ public class CommonDaoImpl implements CommonDao {
             String countsql = sqlRowSet.getString("countsql");
             String sqlcontent = sqlRowSet.getString("sqlcontent");
             // 第二步：替换字符串
-            String querySql = SqlUtils.explainSql(sqlcontent, json);
+            String querySql = SqlUtils.explainSql(sqlcontent, json)+ " limit "+ ((page-1)*size+","+size);
             String countSql = SqlUtils.explainSql(countsql, json);
             log.info("统计sql语句: {} ", countSql);
             log.info("执行sql语句: {} ", querySql);
             //第三步：执行sql
             Integer total = jdbcTemplate.queryForObject(countSql, Integer.class);
-            List<Map<String, Object>> data = jdbcTemplate.queryForList(querySql+" limit "+ ((page-1)*size+","+size));
+            List<Map<String, Object>> data = jdbcTemplate.queryForList(querySql);
             //第四步：返回结果列表
             map.put("code", 0);
             map.put("data", data);
@@ -57,7 +57,14 @@ public class CommonDaoImpl implements CommonDao {
     }
 
     @Override
-    public List<Map<String, Object>> update(JSONObject json) {
+    public Map<String, Object> update(JSONObject json) {
+
+
+
+
+
+
+
         return null;
     }
 

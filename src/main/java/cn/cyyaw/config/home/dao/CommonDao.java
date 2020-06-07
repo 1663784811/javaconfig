@@ -10,7 +10,7 @@ public interface CommonDao {
 
     Map<String, Object> query(JSONObject json);
 
-    List<Map<String, Object>> update(JSONObject json);
+    Map<String, Object> update(JSONObject json);
 
     List<Map<String, Object>> delete(JSONObject json);
 }

@@ -17,7 +17,7 @@ public interface CommonService {
      * 通用更新
      * @return
      */
-    List<Map<String, Object>> update(JSONObject json);
+    Map<String, Object> update(JSONObject json);
 
     /**
      * 通用删除
