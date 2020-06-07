@@ -2,6 +2,8 @@ package cn.cyyaw.config.home.dao.impl;
 
 import cn.cyyaw.common.util.SqlUtils;
 import cn.cyyaw.config.home.dao.CommonDao;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +60,15 @@ public class CommonDaoImpl implements CommonDao {
 
     @Override
     public Map<String, Object> update(JSONObject json) {
+        // 第一步: 查询表结构
+        JSONArray page = tableInfo("c_page");
+        for(int i=0;i<page.size();i++){
+            page.getJSONObject(i);
 
+        }
+        // 判断数据库是否有数据
 
-
-
-
+        // 新增或修改
 
 
         return null;
@@ -70,6 +76,22 @@ public class CommonDaoImpl implements CommonDao {
 
     @Override
     public List<Map<String, Object>> delete(JSONObject json) {
+        // 第一步: 查询表结构
+
+
+
         return null;
+    }
+
+
+    private JSONArray tableInfo(String table){
+        StringBuffer sb = new StringBuffer("select ");
+        sb.append(" table_name as table_name");
+        sb.append(" ,column_name as column_nam");
+        sb.append(" ,data_type as data_type");
+        sb.append(" ,column_key as column_key");
+        sb.append(" from information_schema.columns where table_name= ?");
+        List<Map<String, Object>> maps = jdbcTemplate.queryForList(sb.toString(), table);
+        return JSONArray.parseArray(JSON.toJSON(maps).toString());
     }
 }
