@@ -1,6 +1,7 @@
 package cn.cyyaw.config.home.dao.impl;
 
 import cn.cyyaw.common.util.SqlUtils;
+import cn.cyyaw.common.util.StringUtilWHY;
 import cn.cyyaw.config.home.dao.CommonDao;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -36,7 +37,7 @@ public class CommonDaoImpl implements CommonDao {
             String countsql = sqlRowSet.getString("countsql");
             String sqlcontent = sqlRowSet.getString("sqlcontent");
             // 第二步：替换字符串
-            String querySql = SqlUtils.explainSql(sqlcontent, json)+ " limit "+ ((page-1)*size+","+size);
+            String querySql = SqlUtils.explainSql(sqlcontent, json) + " limit " + ((page - 1) * size + "," + size);
             String countSql = SqlUtils.explainSql(countsql, json);
             log.info("统计sql语句: {} ", countSql);
             log.info("执行sql语句: {} ", querySql);
@@ -61,33 +62,80 @@ public class CommonDaoImpl implements CommonDao {
     @Override
     public Map<String, Object> update(JSONObject json) {
         // 第一步: 查询表结构
-        JSONArray page = tableInfo("c_page");
-        for(int i=0;i<page.size();i++){
-            page.getJSONObject(i);
+        String table = json.getString("table");
+        JSONArray data = json.getJSONArray("data");
+        if (null != data && data.size() > 0) {
+            JSONArray page = tableInfo(table);
+            JSONArray addArr = new JSONArray();
+            JSONArray updateArr = new JSONArray();
+            // 判断数据库是否有数据
+            for (int i = 0; i < page.size(); i++) {
+                JSONObject js = page.getJSONObject(i);
+                String columnName = js.getString("column_name");
+                String columnKey = js.getString("column_key");
+                if (columnKey.equals("PRI")) {
+                    for (int j = 0; j < data.size(); j++) {
+                        JSONObject mm = data.getJSONObject(j);
+                        String id = mm.getString(columnName);
+                        if (!StringUtilWHY.isEmpty(id)) {
+                            addArr.add(mm);
+                        } else {
+                            updateArr.add(mm);
+                        }
+                    }
+                    break;
+                }
+            }
+            // 新增或修改
+            // 新增
+            if (addArr.size() > 0) {
 
+            }
+            // 修改
+            if (updateArr.size() > 0) {
+
+            }
         }
-        // 判断数据库是否有数据
-
-        // 新增或修改
-
-
         return null;
     }
 
     @Override
     public List<Map<String, Object>> delete(JSONObject json) {
         // 第一步: 查询表结构
+        String table = json.getString("table");
+        JSONArray data = json.getJSONArray("data");
+        if (null != data && data.size() > 0) {
+            JSONArray page = tableInfo(table);
+            JSONArray delArr = new JSONArray();
+            // 判断数据库是否有数据
+            for (int i = 0; i < page.size(); i++) {
+                JSONObject js = page.getJSONObject(i);
+                String columnName = js.getString("column_name");
+                String columnKey = js.getString("column_key");
+                if (columnKey.equals("PRI")) {
+                    for (int j = 0; j < data.size(); j++) {
+                        JSONObject mm = data.getJSONObject(j);
+                        String id = mm.getString(columnName);
+                        if (!StringUtilWHY.isEmpty(id)) {
+                            delArr.add(mm);
+                        }
+                    }
+                    break;
+                }
+            }
+            // 删除
+            if (delArr.size() > 0) {
 
-
-
+            }
+        }
         return null;
     }
 
 
-    private JSONArray tableInfo(String table){
+    private JSONArray tableInfo(String table) {
         StringBuffer sb = new StringBuffer("select ");
         sb.append(" table_name as table_name");
-        sb.append(" ,column_name as column_nam");
+        sb.append(" ,column_name as column_name");
         sb.append(" ,data_type as data_type");
         sb.append(" ,column_key as column_key");
         sb.append(" from information_schema.columns where table_name= ?");
