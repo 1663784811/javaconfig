@@ -16,9 +16,9 @@ import java.util.Date;
 public class TAdmin implements Serializable {
     private static final long serialVersionUID = 1587301173682985L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic
-    @Column(name = "id", length = 10, unique = true, columnDefinition = "int COMMENT 'id'")
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT ''")
     private Integer id;
     @Basic
     @Column(name = "account", length = 32, nullable = true, columnDefinition = "varchar(32) COMMENT '账号'")
