@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "t_statistics")
 @org.hibernate.annotations.Table(appliesTo = "t_statistics", comment = "统计表")
 public class TStatistics implements Serializable {
-    private static final long serialVersionUID = 156878262746870L;
+    private static final long serialVersionUID = 1568782627332870L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic
@@ -48,7 +48,7 @@ public class TStatistics implements Serializable {
     @Column(name = "women", length = 10, columnDefinition = "int COMMENT '女生'")
     private Integer women;
     @Basic
-    @Column(name = "unknown", length = 10, columnDefinition = "int COMMENT '未知'")
+    @Column(name = "[unknown]", length = 10, columnDefinition = "int COMMENT '未知'")
     private Integer unknown;
     @Basic
     @Column(name = "userall", length = 10, columnDefinition = "int COMMENT '所有用户'")
