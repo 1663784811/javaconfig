@@ -133,7 +133,7 @@ public class CommonDaoImpl implements CommonDao {
             // 修改
             if (updateArr.size() > 0) {
                 if (!StringUtilWHY.isEmpty(pk)) {
-                    for (int i = 0; i < addArr.size(); i++) {
+                    for (int i = 0; i < updateArr.size(); i++) {
                         String pkvalue = null;
                         StringBuffer sb = new StringBuffer();
                         StringBuffer set = new StringBuffer();
@@ -172,7 +172,7 @@ public class CommonDaoImpl implements CommonDao {
         }
         HashMap<String, Object> map = new HashMap<>();
         map.put("code", 0);
-        map.put("msg", "找不到可用条件");
+        map.put("msg", "ok");
         map.put("data", reArr);
         return map;
     }
@@ -211,7 +211,7 @@ public class CommonDaoImpl implements CommonDao {
         }
         HashMap<String, Object> map = new HashMap<>();
         map.put("code", 0);
-        map.put("msg", "找不到可用条件");
+        map.put("msg", "ok");
         map.put("data", reArr);
         return map;
     }
