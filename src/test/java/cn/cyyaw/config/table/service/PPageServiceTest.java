@@ -39,9 +39,17 @@ public class PPageServiceTest {
             if(i%2== 0){
                 jso.put("id", i);
             }
+
             jso.put("name", "name"+i);
             jso.put("ccsss", "name"+i);
             jso.put("note", "name"+i);
+            if(i==0){
+                jso.put("id", 54);
+                jso.put("name", "测试54  "+i);
+            }else if(i==2){
+                jso.put("id", 55);
+                jso.put("name", "测试55  "+i);
+            }
             arr.add(jso);
         }
         js.put("data", arr);
