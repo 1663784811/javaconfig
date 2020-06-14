@@ -162,7 +162,7 @@ public class CommonDaoImpl implements CommonDao {
                         sb.append(" where " + pk + " = ?");
                         if (null != pkvalue) {
                             list.add(pkvalue);
-                            jdbcTemplate.update(sb.toString());
+                            jdbcTemplate.update(sb.toString(), list.toArray());
                         }
                     }
                 }
@@ -170,14 +170,20 @@ public class CommonDaoImpl implements CommonDao {
             reArr.addAll(addArr);
             reArr.addAll(updateArr);
         }
-        return null;
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        map.put("msg", "找不到可用条件");
+        map.put("data", reArr);
+        return map;
     }
 
     @Override
-    public List<Map<String, Object>> delete(JSONObject json) {
+    public Map<String, Object> delete(JSONObject json) {
         // 第一步: 查询表结构
         String table = json.getString("table");
         JSONArray data = json.getJSONArray("data");
+        JSONArray reArr = new JSONArray();
+        String pk = null;
         if (null != data && data.size() > 0) {
             JSONArray page = tableInfo(table);
             JSONArray delArr = new JSONArray();
@@ -187,6 +193,7 @@ public class CommonDaoImpl implements CommonDao {
                 String columnName = js.getString("column_name");
                 String columnKey = js.getString("column_key");
                 if (columnKey.equals("PRI")) {
+                    pk = columnName;
                     for (int j = 0; j < data.size(); j++) {
                         JSONObject mm = data.getJSONObject(j);
                         String id = mm.getString(columnName);
@@ -202,7 +209,11 @@ public class CommonDaoImpl implements CommonDao {
 
             }
         }
-        return null;
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        map.put("msg", "找不到可用条件");
+        map.put("data", reArr);
+        return map;
     }
 
 

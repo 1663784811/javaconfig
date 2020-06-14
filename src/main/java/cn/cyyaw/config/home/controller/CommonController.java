@@ -57,11 +57,7 @@ public class CommonController {
     @RequestMapping("/delete")
     public Map<String, Object> delete() {
         JSONObject json = new JSONObject();
-        Map<String, Object> map = new HashMap<>();
-        map.put("code", 0);
-        map.put("data", commonService.delete(json));
-        map.put("msg", "ok");
-        return map;
+        return commonService.delete(json);
     }
 
 

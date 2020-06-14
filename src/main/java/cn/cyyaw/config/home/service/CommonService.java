@@ -22,5 +22,5 @@ public interface CommonService {
     /**
      * 通用删除
      */
-    List<Map<String, Object>> delete(JSONObject json);
+    Map<String, Object> delete(JSONObject json);
 }

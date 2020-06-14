@@ -26,7 +26,7 @@ public class CommonServiceImpl implements CommonService {
     }
 
     @Override
-    public List<Map<String, Object>> delete(JSONObject json) {
+    public Map<String, Object> delete(JSONObject json) {
         return commonDao.delete(json);
     }
 }
