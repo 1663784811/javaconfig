@@ -137,7 +137,7 @@ public class CommonDaoImpl implements CommonDao {
                         String pkvalue = null;
                         StringBuffer sb = new StringBuffer();
                         StringBuffer set = new StringBuffer();
-                        JSONObject obj = addArr.getJSONObject(i);
+                        JSONObject obj = updateArr.getJSONObject(i);
                         List<String> list = new ArrayList<>();
                         sb.append("update " + table + " set ");
                         for (int j = 0; j < page.size(); j++) {
@@ -147,14 +147,14 @@ public class CommonDaoImpl implements CommonDao {
                             String cn = obj.getString(name);
                             if (null != cn) {
                                 if (columnKey.equals("PRI")) {
-                                    pkvalue = columnKey;
+                                    pkvalue = cn;
                                 } else {
                                     if (set.length() > 0) {
                                         set.append("," + name + " = ? ");
                                     } else {
                                         set.append(name + " = ? ");
                                     }
-                                    list.add(pkvalue);
+                                    list.add(cn);
                                 }
                             }
                         }
