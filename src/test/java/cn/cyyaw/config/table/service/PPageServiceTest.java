@@ -40,6 +40,8 @@ public class PPageServiceTest {
                 jso.put("id", i);
             }
             jso.put("name", "name"+i);
+            jso.put("ccsss", "name"+i);
+            jso.put("note", "name"+i);
             arr.add(jso);
         }
         js.put("data", arr);
