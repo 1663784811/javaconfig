@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @Slf4j
@@ -44,6 +45,18 @@ public class CommonDaoImpl implements CommonDao {
             //第三步：执行sql
             Integer total = jdbcTemplate.queryForObject(countSql, Integer.class);
             List<Map<String, Object>> data = jdbcTemplate.queryForList(querySql);
+            if (null != data && data.size() > 0) {
+                for (int i = 0; i < data.size(); i++) {
+                    Map<String, Object> mapObj = data.get(i);
+                    for (String key : mapObj.keySet()) {
+                        Object dateTime = mapObj.get(key);
+                        if (dateTime instanceof Timestamp) {
+                            mapObj.put(key, DateUtils.getStringDate((Timestamp) dateTime));
+                        }
+                    }
+                    data.set(i, mapObj);
+                }
+            }
             //第四步：返回结果列表
             map.put("code", 0);
             map.put("data", data);
