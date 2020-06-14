@@ -1,7 +1,9 @@
 package cn.cyyaw.config.home.dao.impl;
 
+import cn.cyyaw.common.util.DateUtils;
 import cn.cyyaw.common.util.SqlUtils;
 import cn.cyyaw.common.util.StringUtilWHY;
+import cn.cyyaw.common.util.WhyStringUtil;
 import cn.cyyaw.config.home.dao.CommonDao;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -12,10 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Repository
@@ -115,7 +114,15 @@ public class CommonDaoImpl implements CommonDao {
                         }
                         sb.append("?");
                         JSONObject js = page.getJSONObject(j);
-                        String cn = obj.getString(js.getString("column_name"));
+                        String cns = js.getString("column_name");
+                        String cn = obj.getString(cns);
+                        if (null == cn && cns.equals("tid")) {
+                            cn = WhyStringUtil.getUUID();
+                        } else if (null == cn && cns.equals("createtime")) {
+                            cn = DateUtils.getStringDate(new Date());
+                        } else if (null == cn && cns.equals("del")) {
+                            cn = "0";
+                        }
                         list.add(cn);
                     }
                     sb.append(" ) ");
