@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @ChannelHandler.Sharable
 public class HandlerWebSocketText extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
-    private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+
 
     @Autowired
     private MessageController messageController;
@@ -72,7 +72,7 @@ public class HandlerWebSocketText extends SimpleChannelInboundHandler<TextWebSoc
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         log.info("================ exceptionCaught:用户聊天注册===========" + ctx.channel().id().asLongText());
-        channelGroup.add(ctx.channel());
+        ChannelData.channelGroup.add(ctx.channel());
     }
 
 }

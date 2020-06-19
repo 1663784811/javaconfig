@@ -22,4 +22,8 @@ public class ChannelData {
      * 客服组
      */
     public static ChannelGroup serverChannelGroup = new DefaultChannelGroup("server", GlobalEventExecutor.INSTANCE);
+    /**
+     * 进入
+     */
+    public static ChannelGroup channelGroup = new DefaultChannelGroup("channelNum", GlobalEventExecutor.INSTANCE);
 }
