@@ -1,5 +1,7 @@
 server:
   port: 8080
+netty:
+  port: 9090
 
 spring:
   application:
@@ -12,6 +14,8 @@ spring:
     open-in-view: false
 
   datasource:
+    druid:
+      
     url: jdbc:mysql://127.0.0.1:3306/config?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: because
@@ -32,4 +36,3 @@ web:
     photo:
       uploadPath: /etc/nginx/html/file
       BaseUrl: http://file.dishijiaoyu.com
-

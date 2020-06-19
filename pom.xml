@@ -37,8 +37,10 @@
             <version>1.4.0</version>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>

@@ -55,8 +55,11 @@ public class CommonController {
      * 通用删除
      */
     @RequestMapping("/delete")
-    public Map<String, Object> delete() {
+    public Map<String, Object> delete(@RequestBody Map<String,Object> map) {
         JSONObject json = new JSONObject();
+        for (String key: map.keySet()) {
+            json.put(key,map.get(key));
+        }
         return commonService.delete(json);
     }
 
