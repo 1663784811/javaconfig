@@ -5,10 +5,7 @@ import cn.cyyaw.common.util.StringUtilWHY;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.group.ChannelGroup;
-import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import io.netty.util.concurrent.GlobalEventExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -20,26 +17,6 @@ import java.io.IOException;
 @Slf4j
 @Component
 public class MessageController {
-
-    /**
-     * 登录组
-     */
-    private static ChannelGroup loginChannelGroup = new DefaultChannelGroup("login", GlobalEventExecutor.INSTANCE);
-    /**
-     * 登录组
-     */
-    private static ChannelGroup adminLoginChannelGroup = new DefaultChannelGroup("adminLogin", GlobalEventExecutor.INSTANCE);
-
-    /**
-     * 聊天组
-     */
-    private static ChannelGroup chatChannelGroup = new DefaultChannelGroup("chat", GlobalEventExecutor.INSTANCE);
-
-    /**
-     * 客服组
-     */
-    private static ChannelGroup serverChannelGroup = new DefaultChannelGroup("server", GlobalEventExecutor.INSTANCE);
-
 
     /**
      * 消息集中处理
@@ -74,7 +51,7 @@ public class MessageController {
 
                     break;
                 case 5:  //登录
-                    loginChannelGroup.add(channel);
+                    ChannelData.loginChannelGroup.add(channel);
                     ctx.writeAndFlush(new TextWebSocketFrame("{\"responseType\":5,\"message\":\"" + channel.id().asLongText() + "\"}"));
                     break;
 
@@ -91,7 +68,7 @@ public class MessageController {
 
 
                 case 105:  //后台登录
-                    adminLoginChannelGroup.add(channel);
+                    ChannelData.adminLoginChannelGroup.add(channel);
                     ctx.writeAndFlush(new TextWebSocketFrame("{\"responseType\":105,\"message\":\"" + channel.id().asLongText() + "\"}"));
                     break;
 
@@ -107,7 +84,6 @@ public class MessageController {
             }
 
         }
-
 
         //==== 响应
         if (messageEntity.getResponseType() != null) {
@@ -153,7 +129,7 @@ public class MessageController {
         //TODO 验证 from  是否登录 from-> 微信登录token
         //TODO 没登录-->  ctx.writeAndFlush( new TextWebSocketFrame("{\"responseType\":6,\"message\":\"您还没登录\"}"))   return ;
         //TODO 登录--> 则向下
-        for (Channel channel : loginChannelGroup) {
+        for (Channel channel : ChannelData.loginChannelGroup) {
             String asLongText = channel.id().asLongText();
             if (asLongText.equals(to)) {
                 channel.writeAndFlush(new TextWebSocketFrame("{\"responseType\":6,\"message\":\"扫码成功\"}"));
@@ -168,7 +144,7 @@ public class MessageController {
         //TODO 验证 from  是否登录 from-> 微信登录token
         //TODO 没登录-->  ctx.writeAndFlush( new TextWebSocketFrame("{\"responseType\":6,\"message\":\"您还没登录\"}"))   return ;
         //TODO 登录--> 则向下
-        for (Channel channel : adminLoginChannelGroup) {
+        for (Channel channel : ChannelData.adminLoginChannelGroup) {
             String asLongText = channel.id().asLongText();
             if (asLongText.equals(to)) {
                 channel.writeAndFlush(new TextWebSocketFrame("{\"responseType\":6,\"message\":\"扫码成功\"}"));
@@ -188,7 +164,7 @@ public class MessageController {
         //TODO 没登录-->  ctx.writeAndFlush( new TextWebSocketFrame("{\"responseType\":6,\"message\":\"您还没登录\"}"))   return ;
         //TODO 登录--> 则向下
 
-        for (Channel channel : loginChannelGroup) {
+        for (Channel channel : ChannelData.loginChannelGroup) {
             String asLongText = channel.id().asLongText();
             if (asLongText.equals(to)) {
                 channel.writeAndFlush(new TextWebSocketFrame("{\"responseType\":7,\"message\":\"" + from + "\"}"));
@@ -210,7 +186,7 @@ public class MessageController {
         //TODO 验证 from  是否登录 from-> 微信登录token
         //TODO 没登录-->  ctx.writeAndFlush( new TextWebSocketFrame("{\"responseType\":6,\"message\":\"您还没登录\"}"))   return ;
         //TODO 登录--> 则向下
-        for (Channel channel : adminLoginChannelGroup) {
+        for (Channel channel : ChannelData.adminLoginChannelGroup) {
             String asLongText = channel.id().asLongText();
             if (asLongText.equals(to)) {
                 channel.writeAndFlush(new TextWebSocketFrame("{\"responseType\":107,\"message\":\"" + from + "\"}"));
@@ -229,7 +205,7 @@ public class MessageController {
      * @param to
      */
     private void cancelLogin(ChannelHandlerContext ctx, String from, String to) {
-        for (Channel channel : loginChannelGroup) {
+        for (Channel channel : ChannelData.loginChannelGroup) {
             String asLongText = channel.id().asLongText();
             if (asLongText.equals(to)) {
                 channel.writeAndFlush(new TextWebSocketFrame("{\"responseType\":8,\"message\":\"取消登录\"}"));
@@ -246,7 +222,7 @@ public class MessageController {
      * @param to
      */
     private void adminCancelLogin(ChannelHandlerContext ctx, String from, String to) {
-        for (Channel channel : adminLoginChannelGroup) {
+        for (Channel channel : ChannelData.adminLoginChannelGroup) {
             String asLongText = channel.id().asLongText();
             if (asLongText.equals(to)) {
                 channel.writeAndFlush(new TextWebSocketFrame("{\"responseType\":8,\"message\":\"取消登录\"}"));
