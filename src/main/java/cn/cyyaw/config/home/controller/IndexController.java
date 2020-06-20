@@ -47,4 +47,14 @@ public class IndexController {
         Page<JShool> page = jShoolService.findPage(jsonStr, pageRequest);
         ResponseUtils.responseJsonFilter(response, PageUtil.pageFormat(page),JShoolConst.filterselectColumnArr);
     }
+
+    /**
+     * 用户聊天列表
+     */
+    @GetMapping(value = "/indexJShool")
+    public void userChat(){
+
+        
+    }
+
 }
