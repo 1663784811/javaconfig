@@ -40,8 +40,10 @@ public class CommonDaoImpl implements CommonDao {
             // 第二步：替换字符串
             String querySql = SqlUtils.explainSql(sqlcontent, json) + " limit " + ((page - 1) * size + "," + size);
             String countSql = SqlUtils.explainSql(countsql, json);
+            log.info("============================================");
             log.info("统计sql语句: {} ", countSql);
             log.info("执行sql语句: {} ", querySql);
+            log.info("============================================");
             //第三步：执行sql
             Integer total = jdbcTemplate.queryForObject(countSql, Integer.class);
             List<Map<String, Object>> data = jdbcTemplate.queryForList(querySql);
