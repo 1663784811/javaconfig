@@ -47,7 +47,7 @@ public class ChatLoginController {
         String lid = channel.id().asLongText();
         ChannelObject channelObject = ChannelData.allChannel.get(lid);
         if(null != channelObject){
-            channelObject.setId(tid);
+            channelObject.setTid(tid);
         }
         return tid;
     }

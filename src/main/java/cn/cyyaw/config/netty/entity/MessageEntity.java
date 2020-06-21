@@ -32,4 +32,8 @@ public class MessageEntity {
      * 服务器接收到的时间
      */
     private String time;
+    /**
+     * 消息类型
+     */
+    private Integer type;
 }

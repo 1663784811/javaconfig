@@ -50,5 +50,8 @@ public class PrMessage {
     @Column(name = "content", columnDefinition = "text COMMENT '消息内容'")
     private String content;
 
+    @Basic
+    @Column(name = "status", unique = true, length = 10, columnDefinition = "int COMMENT '消息状态{0:未读,1:已读}'")
+    private Integer status;
 
 }
