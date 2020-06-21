@@ -11,6 +11,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -21,6 +22,10 @@ import java.util.HashMap;
 @Slf4j
 @Component
 public class MessageController {
+
+    @Autowired
+    private ChatLoginController chatLoginController;
+
 
     /**
      * 消息集中处理
@@ -36,9 +41,9 @@ public class MessageController {
         Channel channel = ctx.channel();
         //=== 请求
         if (messageEntity.getRequestType() != null) {
+            HashMap<String, Object> map = new HashMap<>();
             switch (messageEntity.getRequestType()) {
                 case 0:  //心跳
-                    HashMap<String, Object> map = new HashMap<>();
                     map.put("responseType",0);
                     map.put("message","pong");
                     ctx.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(map)));
@@ -53,8 +58,10 @@ public class MessageController {
                 case 4:  //注册
                     break;
                 case 5:  //登录
-                    ChannelData.loginChannelGroup.add(channel);
-                    ctx.writeAndFlush(new TextWebSocketFrame("{\"responseType\":5,\"message\":\"" + channel.id().asLongText() + "\"}"));
+                    String userID = chatLoginController.loginFn(channel, messageEntity);
+                    map.put("responseType",5);
+                    map.put("message",userID);
+                    ctx.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(map)));
                     break;
                 case 6:  //扫码成功
                     scanSuccess(ctx, messageEntity.getFrom(), messageEntity.getTo());
@@ -108,6 +115,13 @@ public class MessageController {
         }
     }
 
+    /**
+     * 登录消息处理
+     */
+    private String loginFn(){
+
+        return "";
+    }
 
     /**
      * 解释json字符串
