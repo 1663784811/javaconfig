@@ -2,6 +2,7 @@ package cn.cyyaw.config.netty.controller;
 
 import cn.cyyaw.config.netty.config.ChannelData;
 import cn.cyyaw.config.netty.controller.MessageController;
+import cn.cyyaw.config.netty.entity.ChannelObject;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -10,6 +11,8 @@ import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 
 /**
@@ -44,8 +47,10 @@ public class HandlerWebSocketText extends SimpleChannelInboundHandler<TextWebSoc
      * @throws Exception
      */
     @Override
-    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        log.info("================handlerRemoved 聊天被移除===========" + ctx.channel().id().asLongText());
+    public void handlerRemoved(ChannelHandlerContext ctx){
+        String lid = ctx.channel().id().asLongText();
+        log.info("================handlerRemoved 聊天被移除===========" + lid);
+        ChannelData.allChannel.remove(lid);
     }
 
 
@@ -57,9 +62,11 @@ public class HandlerWebSocketText extends SimpleChannelInboundHandler<TextWebSoc
      * @throws Exception
      */
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        log.info("================ exceptionCaught:出现异常===========" + ctx.channel().id().asLongText());
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        String lid = ctx.channel().id().asLongText();
+        log.info("================ exceptionCaught:出现异常===========" + lid);
         ctx.close();
+        ChannelData.allChannel.remove(lid);
     }
 
 
@@ -70,9 +77,14 @@ public class HandlerWebSocketText extends SimpleChannelInboundHandler<TextWebSoc
      * @throws Exception
      */
     @Override
-    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-        log.info("================ exceptionCaught:用户聊天注册===========" + ctx.channel().id().asLongText());
-        ChannelData.channelGroup.add(ctx.channel());
+    public void handlerAdded(ChannelHandlerContext ctx) {
+        String lid = ctx.channel().id().asLongText();
+        log.info("====exceptionCaught:用户聊天注册====" + lid);
+        Map<String, ChannelObject> allChannel = ChannelData.allChannel;
+        ChannelObject ch = new ChannelObject();
+        ch.setId(lid);
+        ch.setChannel(ctx.channel());
+        allChannel.put(lid, ch);
     }
 
 }

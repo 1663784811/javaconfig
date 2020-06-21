@@ -26,6 +26,8 @@ public class MessageController {
     @Autowired
     private ChatLoginController chatLoginController;
 
+    @Autowired
+    private RequestMessageController requestMessageController;
 
     /**
      * 消息集中处理
@@ -49,7 +51,7 @@ public class MessageController {
                     ctx.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(map)));
                     break;
                 case 1:  //消息
-                    sendMessage(ctx, messageEntity.getFrom(), messageEntity.getTo(), messageEntity.getMessage(), messageEntity.getResponseType());
+                    requestMessageController.handleMessage(ctx, messageEntity);
                     break;
                 case 2:  //接听
                     break;
@@ -240,19 +242,4 @@ public class MessageController {
         }
         ctx.writeAndFlush(new TextWebSocketFrame("{\"responseType\":8,\"message\":\"取消登录\"}"));
     }
-
-    /**
-     * 发送消息
-     *
-     * @param ctx
-     * @param from
-     * @param to
-     * @param message
-     * @param messageType
-     */
-    private void sendMessage(ChannelHandlerContext ctx, String from, String to, String message, Integer messageType) {
-
-    }
-
-
 }
