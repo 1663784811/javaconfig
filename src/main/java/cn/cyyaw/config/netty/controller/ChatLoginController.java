@@ -2,6 +2,8 @@ package cn.cyyaw.config.netty.controller;
 
 
 import cn.cyyaw.common.util.StringUtilWHY;
+import cn.cyyaw.config.netty.config.ChannelData;
+import cn.cyyaw.config.netty.entity.ChannelObject;
 import cn.cyyaw.config.netty.entity.MessageEntity;
 import cn.cyyaw.config.table.table.dao.PrUserDao;
 import cn.cyyaw.config.table.table.entity.PrUser;
@@ -14,6 +16,9 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 注册身份
+ */
 @Slf4j
 @Component
 public class ChatLoginController {
@@ -39,6 +44,11 @@ public class ChatLoginController {
             }
         }
         String tid = pr.getTid();
+        String lid = channel.id().asLongText();
+        ChannelObject channelObject = ChannelData.allChannel.get(lid);
+        if(null != channelObject){
+            channelObject.setId(tid);
+        }
         return tid;
     }
 
