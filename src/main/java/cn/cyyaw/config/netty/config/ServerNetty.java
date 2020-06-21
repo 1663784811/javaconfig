@@ -1,4 +1,4 @@
-package cn.cyyaw.config.netty;
+package cn.cyyaw.config.netty.config;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

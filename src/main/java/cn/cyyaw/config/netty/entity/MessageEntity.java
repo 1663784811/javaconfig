@@ -1,4 +1,4 @@
-package cn.cyyaw.config.netty;
+package cn.cyyaw.config.netty.entity;
 
 public class MessageEntity {
 

@@ -1,4 +1,4 @@
-package cn.cyyaw.config.netty;
+package cn.cyyaw.config.netty.config;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;

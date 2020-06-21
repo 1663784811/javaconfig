@@ -1,4 +1,4 @@
-package cn.cyyaw.config.netty;
+package cn.cyyaw.config.netty.config;
 
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;

@@ -1,15 +1,19 @@
-package cn.cyyaw.config.netty;
+package cn.cyyaw.config.netty.controller;
 
 
 import cn.cyyaw.common.util.StringUtilWHY;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import cn.cyyaw.config.netty.config.ChannelData;
+import cn.cyyaw.config.netty.entity.MessageEntity;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.group.ChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * 消息处理
@@ -24,7 +28,7 @@ public class MessageController {
      * @param ctx
      * @param msg
      */
-    public void messageHandle(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws IOException {
+    public void messageHandle(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         log.info("接收到消息：" + msg.text());
         String text = msg.text();
         if (StringUtilWHY.isEmpty(text)) return;
@@ -34,44 +38,37 @@ public class MessageController {
         if (messageEntity.getRequestType() != null) {
             switch (messageEntity.getRequestType()) {
                 case 0:  //心跳
-                    ctx.writeAndFlush(new TextWebSocketFrame("{\"responseType\":0,\"message\":\"pong\"}"));
+                    HashMap<String, Object> map = new HashMap<>();
+                    map.put("responseType",0);
+                    map.put("message","pong");
+                    ctx.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(map)));
                     break;
                 case 1:  //消息
                     sendMessage(ctx, messageEntity.getFrom(), messageEntity.getTo(), messageEntity.getMessage(), messageEntity.getResponseType());
                     break;
                 case 2:  //接听
-
                     break;
                 case 3:  //广播
-
-
                     break;
                 case 4:  //注册
-
-
                     break;
                 case 5:  //登录
                     ChannelData.loginChannelGroup.add(channel);
                     ctx.writeAndFlush(new TextWebSocketFrame("{\"responseType\":5,\"message\":\"" + channel.id().asLongText() + "\"}"));
                     break;
-
                 case 6:  //扫码成功
                     scanSuccess(ctx, messageEntity.getFrom(), messageEntity.getTo());
                     break;
                 case 7:  //点击登录
                     confirmLogin(ctx, messageEntity.getFrom(), messageEntity.getTo());
                     break;
-
                 case 8:  //点击取消
                     cancelLogin(ctx, messageEntity.getFrom(), messageEntity.getTo());
                     break;
-
-
                 case 105:  //后台登录
                     ChannelData.adminLoginChannelGroup.add(channel);
                     ctx.writeAndFlush(new TextWebSocketFrame("{\"responseType\":105,\"message\":\"" + channel.id().asLongText() + "\"}"));
                     break;
-
                 case 106:  //后台登录
                     adminScanSuccess(ctx, messageEntity.getFrom(), messageEntity.getTo());
                     break;
@@ -115,9 +112,8 @@ public class MessageController {
     /**
      * 解释json字符串
      */
-    private MessageEntity string2Object(String json) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        MessageEntity messageEntity = mapper.readValue(json, MessageEntity.class);
+    private MessageEntity string2Object(String json) {
+        MessageEntity messageEntity = JSONObject.parseObject(json, MessageEntity.class);
         return messageEntity;
     }
 
