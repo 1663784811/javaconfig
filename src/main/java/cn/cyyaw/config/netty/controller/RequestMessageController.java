@@ -60,6 +60,8 @@ public class RequestMessageController {
                 omp.put("responseType",1);
                 omp.put("message",messageEntity.getMessage());
                 omp.put("type",messageEntity.getType());
+                omp.put("from",messageEntity.getFrom());
+                omp.put("to",messageEntity.getTo());
                 ch.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(omp)));
                 issend=true;
             }

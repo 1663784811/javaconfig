@@ -1,8 +1,6 @@
 package cn.cyyaw.config.admin.controller;
 
-
-
-import cn.cyyaw.common.util.WhyStringUtil;
+import cn.cyyaw.common.util.StringUtilWHY;
 import cn.cyyaw.config.admin.service.LoginService;
 import cn.cyyaw.config.config.shiro.ShiroEnum;
 import cn.cyyaw.config.table.table.entity.TAdmin;
@@ -94,8 +92,8 @@ public class LoginController {
      */
     @GetMapping("/checkcode")
     public String checkcode(HttpServletRequest request) {
-        String randomString = WhyStringUtil.getRandomString(4);
-        String uuid = WhyStringUtil.getUUID();
+        String randomString = StringUtilWHY.getRandomString(4);
+        String uuid = StringUtilWHY.getUUID();
         Map<String, Object> hashtable = new Hashtable<String, Object>();
         hashtable.put("code", randomString);
         hashtable.put("time", new Date());

@@ -1,8 +1,8 @@
 package cn.cyyaw.config.admin.service.impl;
 
 
+import cn.cyyaw.common.util.StringUtilWHY;
 import cn.cyyaw.common.util.WhyException;
-import cn.cyyaw.common.util.WhyStringUtil;
 import cn.cyyaw.config.admin.dao.TAdminDaoSystem;
 import cn.cyyaw.config.admin.dao.TPowerSystem;
 import cn.cyyaw.config.admin.dao.TRoleDaoSystem;
@@ -12,6 +12,7 @@ import cn.cyyaw.config.table.table.entity.TAdmin;
 import cn.cyyaw.config.table.table.entity.TPower;
 import cn.cyyaw.config.table.table.entity.TRole;
 import cn.cyyaw.jpa.WhyBeanUtils;
+import io.netty.util.internal.StringUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
@@ -74,8 +75,8 @@ public class LoginServiceImpl implements LoginService {
     public TAdmin register(TAdmin tAdmin) {
         List<TAdmin> tAdmins = tAdminDaoSystem.getLoignInfo(tAdmin.getAccount());
         if (tAdmins != null && tAdmins.size() > 0) throw new WhyException("账号已经被注册");
-        String tid = WhyStringUtil.getUUID();
-        String salt = WhyStringUtil.getRandomString(20);
+        String tid = StringUtilWHY.getUUID();
+        String salt = StringUtilWHY.getRandomString(20);
         String hash = new SimpleHash(hashAlgorithmName, tAdmin.getPassword(), salt, hashIterations).toString();
         TAdmin tAdmin1 = new TAdmin();
         tAdmin1.setAccount(tAdmin.getAccount());

@@ -38,20 +38,20 @@ public class PrMessage {
     private Date createtime;
 
     @Basic
-    @Column(name = "pruserid", unique = true, length = 32, columnDefinition = "varchar(32) not null COMMENT '当前用户pr_user表tid'")
+    @Column(name = "pruserid",length = 32, columnDefinition = "varchar(32) not null COMMENT '当前用户pr_user表tid'")
     private String pruserid;
     @Basic
-    @Column(name = "topruserid", unique = true, length = 32, columnDefinition = "varchar(32) not null COMMENT '发送给某用户pr_user表tid'")
+    @Column(name = "topruserid",length = 32, columnDefinition = "varchar(32) not null COMMENT '发送给某用户pr_user表tid'")
     private String topruserid;
     @Basic
-    @Column(name = "type", unique = true, length = 10, columnDefinition = "int  not null COMMENT '消息类型{0:文字,1:图片,2:视频}'")
+    @Column(name = "type",length = 10, columnDefinition = "int  not null COMMENT '消息类型{0:文字,1:图片,2:视频}'")
     private Integer type;
     @Basic
     @Column(name = "content", columnDefinition = "text COMMENT '消息内容'")
     private String content;
 
     @Basic
-    @Column(name = "status", unique = true, length = 10, columnDefinition = "int COMMENT '消息状态{0:未读,1:已读}'")
+    @Column(name = "status",length = 10, columnDefinition = "int COMMENT '消息状态{0:未读,1:已读}'")
     private Integer status;
 
 }

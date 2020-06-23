@@ -3,7 +3,6 @@ package cn.cyyaw.config.home.dao.impl;
 import cn.cyyaw.common.util.DateUtils;
 import cn.cyyaw.common.util.SqlUtils;
 import cn.cyyaw.common.util.StringUtilWHY;
-import cn.cyyaw.common.util.WhyStringUtil;
 import cn.cyyaw.config.home.dao.CommonDao;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -132,7 +131,7 @@ public class CommonDaoImpl implements CommonDao {
                         String cns = js.getString("column_name");
                         String cn = obj.getString(cns);
                         if (null == cn && cns.equals("tid")) {
-                            cn = WhyStringUtil.getUUID();
+                            cn = StringUtilWHY.getUUID();
                         } else if (null == cn && cns.equals("createtime")) {
                             cn = DateUtils.getStringDate(new Date());
                         } else if (null == cn && cns.equals("del")) {
