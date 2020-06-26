@@ -44,7 +44,8 @@ public class RequestMessageController {
         PrMessage pm = new PrMessage();
         pm.setContent(messageEntity.getMessage());
         pm.setTid(StringUtilWHY.getUUID());
-        pm.setType(messageEntity.getType());
+        Integer type = messageEntity.getType();
+        pm.setType(null!=type ? type : 0);
         pm.setCreatetime(new Date());
         pm.setDel(0);
         pm.setStatus(0);
