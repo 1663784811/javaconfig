@@ -28,6 +28,8 @@ public class RequestMessageController {
     @Autowired
     private PrMessageDao prMessageDao;
 
+    private AdminMessageController adminMessage;
+
     /**
      * 处理发过来的消息
      *
@@ -41,6 +43,7 @@ public class RequestMessageController {
         String fromid = channelObject.getTid();
         String to = messageEntity.getTo();
         boolean issend = false;
+        // 第一步：保存数据库
         PrMessage pm = new PrMessage();
         pm.setContent(messageEntity.getMessage());
         pm.setTid(StringUtilWHY.getUUID());
@@ -49,27 +52,37 @@ public class RequestMessageController {
         pm.setCreatetime(new Date());
         pm.setDel(0);
         pm.setStatus(0);
-        pm.setTopruserid(messageEntity.getTo());
+        pm.setTopruserid(to);
         pm.setPruserid(fromid);
         PrMessage pms = prMessageDao.save(pm);
-        for (String key : ChannelData.allChannel.keySet()) {
-            ChannelObject obj = ChannelData.allChannel.get(key);
-            String tid = obj.getTid();
-            if(null != tid && tid.equals(to)){
-                Channel ch = obj.getChannel();
-                HashMap<String, Object> omp = new HashMap<>();
-                omp.put("responseType",1);
-                omp.put("message",messageEntity.getMessage());
-                omp.put("type",messageEntity.getType());
-                omp.put("from",messageEntity.getFrom());
-                omp.put("to",messageEntity.getTo());
-                ch.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(omp)));
-                issend=true;
+        if(!StringUtilWHY.isEmpty(to)){
+            // 第二步：发送数据
+            for (String key : ChannelData.allChannel.keySet()) {
+                ChannelObject obj = ChannelData.allChannel.get(key);
+                String tid = obj.getTid();
+                if(null != tid && tid.equals(to)){
+                    Channel ch = obj.getChannel();
+                    HashMap<String, Object> omp = new HashMap<>();
+                    omp.put("responseType",1);
+                    omp.put("message",messageEntity.getMessage());
+                    omp.put("type",messageEntity.getType());
+                    omp.put("from",messageEntity.getFrom());
+                    omp.put("to",messageEntity.getTo());
+                    ch.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(omp)));
+                    issend=true;
+                }
             }
+        }else {
+            // 广播消息
+            adminMessage.broadcast(ctx, messageEntity);
         }
+        // 第三步：修改状态
         if(issend){
             pms.setStatus(1);
             prMessageDao.save(pms);
+        }else{
+            // 广播消息
+            adminMessage.broadcast(ctx, messageEntity);
         }
     }
 }

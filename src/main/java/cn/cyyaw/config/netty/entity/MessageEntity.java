@@ -33,7 +33,7 @@ public class MessageEntity {
      */
     private String time;
     /**
-     * 消息类型 {0:文字,1:图片,2:视频}
+     * 消息类型 {0:文字,1:图片,2:视频,3:广播}
      */
     private Integer type;
     /**

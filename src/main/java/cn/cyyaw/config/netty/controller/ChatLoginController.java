@@ -56,6 +56,7 @@ public class ChatLoginController {
         ChannelObject channelObject = ChannelData.allChannel.get(lid);
         if(null != channelObject){
             channelObject.setTid(tid);
+            channelObject.setType(pr.getUsertype());
         }
         return tid;
     }
