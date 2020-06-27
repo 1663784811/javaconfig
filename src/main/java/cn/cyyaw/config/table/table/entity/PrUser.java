@@ -64,6 +64,6 @@ public class PrUser implements Serializable {
     private Date lastlogintime;
 
     @Basic
-    @Column(name = "usertype", columnDefinition = "int COMMENT '用户类型{0:普通用户,1:管理员}'")
+    @Column(name = "usertype", unique = true, nullable = false, columnDefinition = "int default '0' COMMENT '用户类型{0:普通用户,1:管理员}'")
     private Integer usertype;
 }

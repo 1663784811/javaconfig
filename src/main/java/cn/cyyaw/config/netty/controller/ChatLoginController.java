@@ -32,9 +32,10 @@ public class ChatLoginController {
     public String loginFn(Channel channel, MessageEntity messageEntity) {
         PrUser pr = new PrUser();
         String message = messageEntity.getMessage();
+        Integer usertype = messageEntity.getUsertype();
         if (StringUtilWHY.isEmpty(message)) {
             PrUser prUser = new PrUser();
-            prUser.setUsertype(messageEntity.getUsertype());
+            prUser.setUsertype(null == usertype?0:usertype);
             pr = createPrUser(prUser);
         } else {
             pr.setTid(message);
@@ -42,12 +43,11 @@ public class ChatLoginController {
             if(null != prUsers && prUsers.size()>0){
                 pr = prUsers.get(0);
                 pr.setLastlogintime(new Date());
-                pr.setUsertype(messageEntity.getUsertype());
-                pr.setUsertype(messageEntity.getUsertype());
+                pr.setUsertype(null == usertype?0:usertype);
                 pr = prUserDao.save(pr);
             }else{
                 PrUser prUser = new PrUser();
-                prUser.setUsertype(messageEntity.getUsertype());
+                prUser.setUsertype(null == usertype?0:usertype);
                 pr = createPrUser(prUser);
             }
         }
@@ -67,7 +67,7 @@ public class ChatLoginController {
         pr.setDel(0);
         pr.setLastlogintime(new Date());
         Integer usertype = pr.getUsertype();
-        pr.setNote((usertype != null || usertype==1)  ? "管理员":"游客" );
+        pr.setNote((usertype != null || usertype==2)  ? "管理员":"游客" );
         pr = prUserDao.save(pr);
         return pr;
     }
