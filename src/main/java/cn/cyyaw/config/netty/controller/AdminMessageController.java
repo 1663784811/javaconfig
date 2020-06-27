@@ -32,7 +32,9 @@ public class AdminMessageController {
             if(null != type && type == 2){
                 Channel ch = co.getChannel();
                 HashMap<String, Object> omp = new HashMap<>();
-                omp.put("","ddddd");
+                omp.put("responseType",3); // 广播
+                omp.put("message", messageEntity.getMessage()); // 来自类型
+                omp.put("from", messageEntity.getFrom()); // 来自用户
                 ch.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(omp)));
             }
         }

@@ -43,11 +43,11 @@ public class RequestMessageController {
         String fromid = channelObject.getTid();
         String to = messageEntity.getTo();
         boolean issend = false;
+        Integer type = messageEntity.getType();
         // 第一步：保存数据库
         PrMessage pm = new PrMessage();
         pm.setContent(messageEntity.getMessage());
         pm.setTid(StringUtilWHY.getUUID());
-        Integer type = messageEntity.getType();
         pm.setType(null!=type ? type : 0);
         pm.setCreatetime(new Date());
         pm.setDel(0);
