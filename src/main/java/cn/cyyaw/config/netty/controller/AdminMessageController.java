@@ -25,6 +25,7 @@ public class AdminMessageController {
      * 广播管理员消息
      */
     public void broadcast(ChannelHandlerContext channel, MessageEntity messageEntity){
+        log.info("广播管理员消息:{}", messageEntity.toString());
         Map<String, ChannelObject> ac = ChannelData.allChannel;
         for (String key: ac.keySet()) {
             ChannelObject co = ac.get(key);
