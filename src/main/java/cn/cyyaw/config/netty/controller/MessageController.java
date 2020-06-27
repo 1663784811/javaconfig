@@ -36,7 +36,6 @@ public class MessageController {
      * @param msg
      */
     public void messageHandle(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
-        log.info("接收到消息：" + msg.text());
         String text = msg.text();
         if (StringUtilWHY.isEmpty(text)) return;
         MessageEntity messageEntity = string2Object(text);
@@ -44,6 +43,9 @@ public class MessageController {
         //=== 请求
         if (messageEntity.getRequestType() != null) {
             HashMap<String, Object> map = new HashMap<>();
+            if(messageEntity.getRequestType() != 0){
+                log.info("接收到消息：" + messageEntity.toString());
+            }
             switch (messageEntity.getRequestType()) {
                 case 0:  //心跳
                     map.put("responseType",0);
@@ -54,6 +56,7 @@ public class MessageController {
                     requestMessageController.handleMessage(ctx, messageEntity);
                     break;
                 case 2:  //接听
+                    requestMessageController.answerMessage(ctx, messageEntity);
                     break;
                 case 3:  //广播
                     break;

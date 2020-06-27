@@ -28,6 +28,7 @@ public class RequestMessageController {
     @Autowired
     private PrMessageDao prMessageDao;
 
+    @Autowired
     private AdminMessageController adminMessage;
 
     /**
@@ -52,7 +53,7 @@ public class RequestMessageController {
         pm.setCreatetime(new Date());
         pm.setDel(0);
         pm.setStatus(0);
-        pm.setTopruserid(to);
+        pm.setTopruserid(to == null ? "": to);
         pm.setPruserid(fromid);
         PrMessage pms = prMessageDao.save(pm);
         if(!StringUtilWHY.isEmpty(to)){
@@ -83,6 +84,46 @@ public class RequestMessageController {
         }else{
             // 广播消息
             adminMessage.broadcast(ctx, messageEntity);
+        }
+    }
+
+    /**
+     * 接听用户消息
+     */
+    public void answerMessage(ChannelHandlerContext ctx, MessageEntity me) {
+        String from = me.getFrom();
+        String to = me.getTo();
+        boolean issend = false; // 是否接听成功
+        for (String key : ChannelData.allChannel.keySet()) {
+            ChannelObject obj = ChannelData.allChannel.get(key);
+            String tid = obj.getTid();
+            Integer type = obj.getType();
+            Channel ch = obj.getChannel();
+            HashMap<String, Object> omp = new HashMap<>();
+            if(null != tid && tid.equals(to)){
+                omp.put("responseType",2);
+                omp.put("message","接听用户消息");
+                omp.put("from",from);
+                omp.put("to",to);
+                ch.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(omp)));
+                issend=true;
+            }else if(null != type && type==2 && null != tid && !tid.equals(from)){
+                omp.put("responseType",3);
+                omp.put("message","广播");
+                omp.put("from",from);
+                omp.put("to",to);
+                omp.put("type",to);
+                ch.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(omp)));
+            }
+        }
+        if(issend){
+            Channel ch = ctx.channel();
+            HashMap<String, Object> omp = new HashMap<>();
+            omp.put("responseType",2);
+            omp.put("message","接听成功");
+            omp.put("from",to);
+            omp.put("to",from);
+            ch.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(omp)));
         }
     }
 }
