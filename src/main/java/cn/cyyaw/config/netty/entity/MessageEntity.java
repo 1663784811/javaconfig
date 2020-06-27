@@ -36,4 +36,8 @@ public class MessageEntity {
      * 消息类型 {0:文字,1:图片,2:视频}
      */
     private Integer type;
+    /**
+     * 用户类型{0:普通用户,1:管理员}
+     */
+    private Integer usertype;
 }

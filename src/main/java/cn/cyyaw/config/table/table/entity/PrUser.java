@@ -51,7 +51,7 @@ public class PrUser implements Serializable {
     @Column(name = "nickname", length = 32, columnDefinition = "varchar(32) COMMENT '临时昵称'")
     private String nickname;
     @Basic
-    @Column(name = "face", length = 255, columnDefinition = "varchar(255) COMMENT '临时用户头像'")
+    @Column(name = "face", columnDefinition = "varchar(255) COMMENT '临时用户头像'")
     private String face;
     @Basic
     @Column(name = "ip", length = 60, columnDefinition = "varchar(60) COMMENT '临时最后登录IP'")
@@ -62,4 +62,8 @@ public class PrUser implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastlogintime;
+
+    @Basic
+    @Column(name = "usertype", columnDefinition = "int COMMENT '用户类型{0:普通用户,1:管理员}'")
+    private Integer usertype;
 }

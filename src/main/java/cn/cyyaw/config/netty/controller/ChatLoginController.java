@@ -26,21 +26,29 @@ public class ChatLoginController {
     @Autowired
     private PrUserDao prUserDao;
 
-
+    /**
+     * 聊天登录
+     */
     public String loginFn(Channel channel, MessageEntity messageEntity) {
         PrUser pr = new PrUser();
         String message = messageEntity.getMessage();
         if (StringUtilWHY.isEmpty(message)) {
-            pr = createPrUser();
+            PrUser prUser = new PrUser();
+            prUser.setUsertype(messageEntity.getUsertype());
+            pr = createPrUser(prUser);
         } else {
             pr.setTid(message);
             List<PrUser> prUsers = prUserDao.findAll(Example.of(pr));
             if(null != prUsers && prUsers.size()>0){
                 pr = prUsers.get(0);
                 pr.setLastlogintime(new Date());
+                pr.setUsertype(messageEntity.getUsertype());
+                pr.setUsertype(messageEntity.getUsertype());
                 pr = prUserDao.save(pr);
             }else{
-                pr = createPrUser();
+                PrUser prUser = new PrUser();
+                prUser.setUsertype(messageEntity.getUsertype());
+                pr = createPrUser(prUser);
             }
         }
         String tid = pr.getTid();
@@ -52,13 +60,13 @@ public class ChatLoginController {
         return tid;
     }
 
-    private PrUser createPrUser(){
-        PrUser pr = new PrUser();
+    private PrUser createPrUser(PrUser pr){
         pr.setCreatetime(new Date());
         pr.setTid(StringUtilWHY.getUUID());
         pr.setDel(0);
         pr.setLastlogintime(new Date());
-        pr.setNote("游客");
+        Integer usertype = pr.getUsertype();
+        pr.setNote((usertype != null || usertype==1)  ? "管理员":"游客" );
         pr = prUserDao.save(pr);
         return pr;
     }
