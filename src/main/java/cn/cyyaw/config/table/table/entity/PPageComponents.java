@@ -43,4 +43,11 @@ public class PPageComponents implements Serializable{
     @Basic
     @Column(name="pageid", columnDefinition = "varchar(32) COMMENT '页面ID'")
     private String pageid;
+
+    @Basic
+    @Column(name = "type", columnDefinition = "varchar(15) COMMENT '组件类型{1:表格,2:输入框,3:下拉框}'")
+    private String type;
+
+
+
 }

@@ -220,7 +220,12 @@ public class CommonDaoImpl implements CommonDao {
             }
             // 删除
             if (delArr.size() > 0) {
-
+                List slist = new ArrayList<>();
+                for(int i=0; i<delArr.size(); i++){
+                    slist.add(delArr.getJSONObject(i).getString(pk));
+                }
+                String sql = "delete FROM "+table + " where " + pk+" in ("+ StringUtilWHY.createStr(slist.size(),"?",",")+")";
+                jdbcTemplate.update(sql, slist.toArray());
             }
         }
         HashMap<String, Object> map = new HashMap<>();
