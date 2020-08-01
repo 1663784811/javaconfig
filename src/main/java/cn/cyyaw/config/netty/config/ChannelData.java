@@ -21,16 +21,5 @@ public class ChannelData {
      * 登录组
      */
     public static ChannelGroup adminLoginChannelGroup = new DefaultChannelGroup("adminLogin", GlobalEventExecutor.INSTANCE);
-    /**
-     * 聊天组
-     */
-    public static ChannelGroup chatChannelGroup = new DefaultChannelGroup("chat", GlobalEventExecutor.INSTANCE);
-    /**
-     * 客服组
-     */
-    public static ChannelGroup serverChannelGroup = new DefaultChannelGroup("server", GlobalEventExecutor.INSTANCE);
-    /**
-     * 进入
-     */
-    public static ChannelGroup channelGroup = new DefaultChannelGroup("channelNum", GlobalEventExecutor.INSTANCE);
+
 }

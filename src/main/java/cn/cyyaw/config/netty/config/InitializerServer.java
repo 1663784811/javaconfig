@@ -30,7 +30,6 @@ public class InitializerServer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast("httpObjectAggregator", new HttpObjectAggregator(8192));
         pipeline.addLast("idleStateHandler", new IdleStateHandler(30, 30, 30));
         pipeline.addLast("webSocketServerProtocolHandler", new WebSocketServerProtocolHandler("/chat"));//它处理websocket握手以及控制帧的处理(关闭，Ping, Pong)。
-
         //========= 自定义
         pipeline.addLast("handlerState", handlerState);     //状态
         pipeline.addLast("handlerWebSocketText", handlerWebSocketText); //webSocket

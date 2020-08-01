@@ -93,31 +93,6 @@ public class MessageController {
             }
 
         }
-
-        //==== 响应
-        if (messageEntity.getResponseType() != null) {
-            switch (messageEntity.getRequestType()) {
-                case 1:  //消息
-
-
-                    break;
-                case 2:  //接听
-
-
-                    break;
-                case 3:  //广播
-
-
-                    break;
-                case 4:  //注册
-
-
-                    break;
-                case 5:  //登录
-
-                    break;
-            }
-        }
     }
 
     /**

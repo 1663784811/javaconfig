@@ -1,6 +1,6 @@
 package cn.cyyaw.config.code.service;
 
-import java.util.Map;
+import com.alibaba.fastjson.JSONObject;
 
 public interface PageService {
 
@@ -10,7 +10,7 @@ public interface PageService {
      * @param tid 页面表ID
      * @return
      */
-    Map<String, Object> pageConfig(String tid);
+    JSONObject pageConfig(String tid);
 
 
 }
