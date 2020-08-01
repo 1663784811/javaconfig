@@ -164,9 +164,9 @@ public class CommonDaoImpl implements CommonDao {
                                     pkvalue = cn;
                                 } else {
                                     if (set.length() > 0) {
-                                        set.append("," + name + " = ? ");
+                                        set.append(",`" + name + "` = ? ");
                                     } else {
-                                        set.append(name + " = ? ");
+                                        set.append("`"+name + "` = ? ");
                                     }
                                     list.add(cn);
                                 }
