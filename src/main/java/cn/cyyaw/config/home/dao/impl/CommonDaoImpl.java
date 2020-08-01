@@ -111,7 +111,7 @@ public class CommonDaoImpl implements CommonDao {
                         sbm.append(",");
                     }
                     JSONObject js = page.getJSONObject(m);
-                    sbm.append(js.getString("column_name"));
+                    sbm.append("`"+js.getString("column_name")+"`");
                 }
                 sql += (sbm.toString() + ") values ");
                 List<String> list = new ArrayList<>();
