@@ -78,11 +78,11 @@ public class PField implements Serializable {
     @Column(name = "format", columnDefinition = "varchar(20) COMMENT '格式化'")
     private String format;
     @Basic
-    @Column(name = "isShowColumn", columnDefinition = "varchar(2) default '1' COMMENT '是否显示字段'")
-    private String isShowColumn;
+    @Column(name = "isShowColumn", columnDefinition = "int default '1' COMMENT '是否显示字段{0:否,1:是}'")
+    private Integer isShowColumn;
     @Basic
-    @Column(name = "isWhere", columnDefinition = "varchar(2) default '1' COMMENT '是否显示条件'")
-    private String isWhere;
+    @Column(name = "isWhere", columnDefinition = "int default '1' COMMENT '是否显示条件{0:否,1:是}'")
+    private Integer isWhere;
     @Basic
     @Column(name = "javaWhere", columnDefinition = "varchar(20) COMMENT '条件类型{=:equals,%:like}'")
     private String javaWhere;
