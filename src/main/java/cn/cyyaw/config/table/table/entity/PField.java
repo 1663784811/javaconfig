@@ -57,8 +57,8 @@ public class PField implements Serializable {
     @Column(name = "length", columnDefinition = "int COMMENT '长度'")
     private Integer length;
     @Basic
-    @Column(name = "isRequire", columnDefinition = "varchar(2) default '0' COMMENT '是否必填'")
-    private String isRequire;
+    @Column(name = "isRequire", columnDefinition = "int default '0' COMMENT '是否必填{0:否,1:是}'")
+    private Integer isRequire;
     @Basic
     @Column(name = "regStr", columnDefinition = "varchar(20) COMMENT '验证正则'")
     private String regStr;
