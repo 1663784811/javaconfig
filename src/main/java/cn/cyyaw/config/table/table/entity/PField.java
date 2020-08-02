@@ -60,13 +60,13 @@ public class PField implements Serializable {
     @Column(name = "isRequire", columnDefinition = "int default '0' COMMENT '是否必填{0:否,1:是}'")
     private Integer isRequire;
     @Basic
-    @Column(name = "regStr", columnDefinition = "varchar(20) COMMENT '验证正则'")
+    @Column(name = "regstr", columnDefinition = "varchar(20) COMMENT '验证正则'")
     private String regStr;
     @Basic
     @Column(name = "message", columnDefinition = "varchar(32) COMMENT '提示'")
     private String message;
     @Basic
-    @Column(name = "controlType", columnDefinition = "varchar(20) COMMENT '控件类型'")
+    @Column(name = "controltype", columnDefinition = "varchar(20) COMMENT '控件类型'")
     private String controlType;
     @Basic
     @Column(name = "max", columnDefinition = "int COMMENT '最大值'")
@@ -78,18 +78,18 @@ public class PField implements Serializable {
     @Column(name = "format", columnDefinition = "varchar(20) COMMENT '格式化'")
     private String format;
     @Basic
-    @Column(name = "isShowColumn", columnDefinition = "int default '1' COMMENT '是否显示字段{0:否,1:是}'")
-    private Integer isShowColumn;
+    @Column(name = "isshowcolumn", columnDefinition = "int default '1' COMMENT '是否显示字段{0:否,1:是}'")
+    private Integer isshowcolumn;
     @Basic
-    @Column(name = "isWhere", columnDefinition = "int default '1' COMMENT '是否显示条件{0:否,1:是}'")
-    private Integer isWhere;
+    @Column(name = "iswhere", columnDefinition = "int default '1' COMMENT '是否显示条件{0:否,1:是}'")
+    private Integer iswhere;
     @Basic
-    @Column(name = "javaWhere", columnDefinition = "varchar(20) COMMENT '条件类型{=:equals,%:like}'")
-    private String javaWhere;
+    @Column(name = "javawhere", columnDefinition = "varchar(20) COMMENT '条件类型{=:equals,%:like}'")
+    private String javawhere;
     @Basic
-    @Column(name = "javaType", columnDefinition = "varchar(20) COMMENT 'java类型{integer:integer,string:string}'")
-    private String javaType;
+    @Column(name = "javatype", columnDefinition = "varchar(20) COMMENT 'java类型{integer:integer,string:string}'")
+    private String javatype;
     @Basic
-    @Column(name = "selectArr", columnDefinition = "varchar(255) COMMENT '[{key:1,title:菜单}]'")
-    private String selectArr;
+    @Column(name = "selectarr", columnDefinition = "varchar(255) COMMENT '[{key:1,title:菜单}]'")
+    private String selectarr;
 }

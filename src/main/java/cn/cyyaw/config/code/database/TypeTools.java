@@ -1,9 +1,9 @@
 package cn.cyyaw.config.code.database;
 
 
-import cn.cyyaw.config.code.entity.java.JavaColumn;
-import cn.cyyaw.config.code.entity.vue.Filters;
-import cn.cyyaw.config.code.entity.vue.VueJson;
+import cn.cyyaw.config.code.tools.entity.java.JavaColumn;
+import cn.cyyaw.config.code.tools.entity.vue.Filters;
+import cn.cyyaw.config.code.tools.entity.vue.VueJson;
 
 import java.util.ArrayList;
 import java.util.List;

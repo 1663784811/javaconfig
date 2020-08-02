@@ -48,6 +48,7 @@ public class AdminShiroConfig {
         filterChainDefinitionMap.put("/web/**", "anon");
         filterChainDefinitionMap.put("/pay/**", "anon");
         filterChainDefinitionMap.put("/notify/order/**", "anon");
+        filterChainDefinitionMap.put("/config/**", "anon");
         filterChainDefinitionMap.put("/weixin/**", "anon");
         filterChainDefinitionMap.put("/recharge/**", "loginFilter");
         filterChainDefinitionMap.put("/wx/**", "anon");

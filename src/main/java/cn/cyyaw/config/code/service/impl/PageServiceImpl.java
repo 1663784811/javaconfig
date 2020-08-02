@@ -1,7 +1,5 @@
 package cn.cyyaw.config.code.service.impl;
 
-import cn.cyyaw.config.code.entity.java.JavaColumn;
-import cn.cyyaw.config.code.entity.java.JavaData;
 import cn.cyyaw.config.code.service.PageService;
 import cn.cyyaw.config.table.table.dao.PFieldDao;
 import cn.cyyaw.config.table.table.dao.PPageComponentsDao;
@@ -12,14 +10,8 @@ import cn.cyyaw.config.table.table.entity.PPageComponents;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 

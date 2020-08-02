@@ -1,4 +1,4 @@
-package cn.cyyaw.config.code.entity.java;
+package cn.cyyaw.config.code.tools.entity.java;
 
 import lombok.Data;
 

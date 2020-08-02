@@ -1,7 +1,8 @@
-package cn.cyyaw.config.code.database;
+package cn.cyyaw.config.code.tools.database;
 
 
-import cn.cyyaw.config.code.entity.java.*;
+import cn.cyyaw.config.code.database.TypeTools;
+import cn.cyyaw.config.code.tools.entity.java.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;

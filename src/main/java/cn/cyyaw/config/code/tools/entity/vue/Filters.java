@@ -1,4 +1,4 @@
-package cn.cyyaw.config.code.entity.vue;
+package cn.cyyaw.config.code.tools.entity.vue;
 
 import lombok.Data;
 

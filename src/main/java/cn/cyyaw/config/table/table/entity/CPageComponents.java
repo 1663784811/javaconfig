@@ -42,7 +42,7 @@ public class CPageComponents implements Serializable {
     @Column(name = "icon", columnDefinition = "varchar(255) COMMENT 'icon图标'")
     private String icon;
     @Basic
-    @Column(name = "import_js", columnDefinition = "text COMMENT '导入js'")
+    @Column(name = "importjs", columnDefinition = "text COMMENT '导入js'")
     private String importJs;
     @Basic
     @Column(name = "methods", columnDefinition = "text COMMENT '方法'")
