@@ -29,5 +29,21 @@ public class PageController {
         ResponseUtils.responseJsonFilter(response, pageConfig);
     }
 
+    /**
+     * 读取数据表
+     */
+    @PostMapping("/readDataBaseTable")
+    public void readDataBaseTable(HttpServletResponse response){
+        // JSONArray arr= pageService.readDataBaseTable();
+        // ResponseUtils.responseJsonFilter(response, arr);
+    }
 
+    /**
+     * 读取数据表内容
+     */
+    @PostMapping("/readTable")
+    public void readTable(HttpServletResponse response,@RequestBody PPage pPage){
+        JSONObject pageConfig = pageService.pageConfig(pPage.getTid());
+        ResponseUtils.responseJsonFilter(response, pageConfig);
+    }
 }
