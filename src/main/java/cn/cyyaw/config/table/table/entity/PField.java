@@ -45,8 +45,8 @@ public class PField implements Serializable {
     @Column(name = "[key]", columnDefinition = "varchar(20) COMMENT 'key'")
     private String key;
     @Basic
-    @Column(name = "width", columnDefinition = "varchar(10) COMMENT '宽度'")
-    private String width;
+    @Column(name = "width", columnDefinition = "int COMMENT '宽度'")
+    private Integer width;
     @Basic
     @Column(name = "title", columnDefinition = "varchar(32) COMMENT '标题'")
     private String title;
