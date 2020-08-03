@@ -47,6 +47,10 @@ public class PageController {
     public void readDataBaseTable(HttpServletResponse response) throws SQLException, ClassNotFoundException {
         DataBase dataBase = new DataBase(driver, url, user, pwd);
         List<JavaData> tableList = dataBase.getTableList(null);
+
+
+
+
         ResponseUtils.responseJsonFilter(response, tableList);
     }
 

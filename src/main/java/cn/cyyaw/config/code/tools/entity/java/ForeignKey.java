@@ -7,8 +7,8 @@ import lombok.Data;
  */
 @Data
 public class ForeignKey {
-    private String fkTableNote;  //表名
-    private String fkColumnName;  //表名
-    private String pkTableName;   //指向的表名
-    private String pkColumnName;  //指向的列
+    private String fktablenote;  //表名
+    private String fkcolumnname;  //表名
+    private String pktablename;   //指向的表名
+    private String pkcolumnname;  //指向的列
 }

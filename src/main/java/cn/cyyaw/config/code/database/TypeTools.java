@@ -173,7 +173,7 @@ public class TypeTools {
     public static VueJson javaColumn2VueJson(JavaColumn javaColumn) {
         VueJson vueJson = new VueJson();
         if (null != javaColumn) {
-            vueJson.setKey(javaColumn.getColumnName()); //key
+            vueJson.setKey(javaColumn.getColumnname()); //key
 
             String note = javaColumn.getNote();
             List filters = new ArrayList<Filters>();
@@ -202,23 +202,23 @@ public class TypeTools {
             }
             vueJson.setFilters(filters);
             vueJson.setTitle(note); //标题
-            vueJson.setType(javaColumn.getIsPrimary() ? "selection" : "html"); //类型
+            vueJson.setType(javaColumn.getIsprimary() ? "selection" : "html"); //类型
             vueJson.setLength(javaColumn.getLength());
-            vueJson.setRegStr("");
-            vueJson.setIsRequire(false);
+            vueJson.setRegstr("");
+            vueJson.setIsrequire(false);
             vueJson.setMessage(javaColumn.getNote());
-            if (javaColumn.getIsPrimary()) {
-                vueJson.setControlType("hidden");
+            if (javaColumn.getIsprimary()) {
+                vueJson.setControltype("hidden");
             } else {
-                vueJson.setControlType(javaType2ControlType(javaColumn.getDbType()));
+                vueJson.setControltype(javaType2ControlType(javaColumn.getDbtype()));
             }
-            vueJson.setFormat(dateType2Format(javaType2ControlType(javaColumn.getDbType())));
+            vueJson.setFormat(dateType2Format(javaType2ControlType(javaColumn.getDbtype())));
 
-            vueJson.setIsWhere(!javaColumn.getIsPrimary());
-            vueJson.setIsShowColumn(true);
+            vueJson.setIswhere(!javaColumn.getIsprimary());
+            vueJson.setIsshowcolumn(true);
 
-            vueJson.setJavaType(dbType2JavaType(javaColumn.getDbType()).toLowerCase());
-            vueJson.setJavaWhere(javaType2CodeType(dbType2JavaType(javaColumn.getDbType()).toLowerCase()));
+            vueJson.setJavatype(dbType2JavaType(javaColumn.getDbtype()).toLowerCase());
+            vueJson.setJavawhere(javaType2CodeType(dbType2JavaType(javaColumn.getDbtype()).toLowerCase()));
 
         }
         return vueJson;

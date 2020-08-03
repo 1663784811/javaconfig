@@ -7,6 +7,6 @@ import lombok.Data;
  */
 @Data
 public class PrimaryKeys {
-    private String tableName;   //表名
-    private String columnName;  //指向的列
+    private String tablename;   //表名
+    private String columnname;  //指向的列
 }

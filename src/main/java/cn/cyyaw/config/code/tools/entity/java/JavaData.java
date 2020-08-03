@@ -8,7 +8,7 @@ import java.util.List;
 public class JavaData {
     private String database;                //数据库
     private String table;                   //数据表
-    private String tableNote;               //表注释
-    private String tableType;               //类型
-    private List<JavaColumn> javaColumns;   //字段列表
+    private String tablenote;               //表注释
+    private String tabletype;               //类型
+    private List<JavaColumn> javacolumns;   //字段列表
 }
