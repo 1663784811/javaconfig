@@ -43,7 +43,7 @@ public class PageController {
     /**
      * 读取数据表
      */
-    @GetMapping("/readDataBaseTable")
+    @PostMapping("/readDataBaseTable")
     public void readDataBaseTable(HttpServletResponse response) throws SQLException, ClassNotFoundException {
         DataBase dataBase = new DataBase(driver, url, user, pwd);
         List<JavaData> tableList = dataBase.getTableList(null);
