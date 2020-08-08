@@ -11,6 +11,6 @@ import java.util.List;
 public interface PFieldDao extends BaseDao<PField, Integer> {
 
 
-    @Query("select m from PField m where m.componentsid in( :ctidArr ) ")
+    @Query("select m from PField m where m.componentsid in( :ctidArr ) order by m.sort ")
     List<PField> findByComponentsId(@Param("ctidArr") List<String> ctidArr);
 }

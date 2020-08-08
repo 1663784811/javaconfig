@@ -39,7 +39,6 @@ public class PageServiceImpl implements PageService {
             JSONArray componentsArr = JSONArray.parseArray(JSONArray.toJSONString(components));
             if (null != components && components.size() > 0) {
                 List<String> ctidArr = new ArrayList<>();
-
                 for (int i = 0; i < componentsArr.size(); i++) {
                     JSONObject json = componentsArr.getJSONObject(i);
                     ctidArr.add(json.getString("tid"));

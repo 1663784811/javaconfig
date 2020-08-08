@@ -35,6 +35,8 @@ public class PField implements Serializable {
     @Basic
     @Column(name = "note", columnDefinition = "varchar(255) COMMENT '备注'")
     private String note;
+
+
     @Basic
     @Column(name = "pageid", columnDefinition = "varchar(32) COMMENT '页面表p_page_td'")
     private String pageid;
@@ -57,17 +59,17 @@ public class PField implements Serializable {
     @Column(name = "length", columnDefinition = "int COMMENT '长度'")
     private Integer length;
     @Basic
-    @Column(name = "isRequire", columnDefinition = "int default '0' COMMENT '是否必填{0:否,1:是}'")
-    private Integer isRequire;
+    @Column(name = "isrequire", columnDefinition = "int default '0' COMMENT '是否必填{0:否,1:是}'")
+    private Integer isrequire;
     @Basic
     @Column(name = "regstr", columnDefinition = "varchar(20) COMMENT '验证正则'")
-    private String regStr;
+    private String regstr;
     @Basic
     @Column(name = "message", columnDefinition = "varchar(32) COMMENT '提示'")
     private String message;
     @Basic
     @Column(name = "controltype", columnDefinition = "varchar(20) COMMENT '控件类型'")
-    private String controlType;
+    private String controltype;
     @Basic
     @Column(name = "max", columnDefinition = "int COMMENT '最大值'")
     private Integer max;
@@ -92,4 +94,7 @@ public class PField implements Serializable {
     @Basic
     @Column(name = "selectarr", columnDefinition = "varchar(255) COMMENT '[{key:1,title:菜单}]'")
     private String selectarr;
+    @Basic
+    @Column(name = "sort", columnDefinition = "int COMMENT '排序：从小到大'")
+    private Integer sort;
 }
