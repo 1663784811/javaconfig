@@ -77,9 +77,9 @@ public class PageController {
                     field.setIswhere(vueJson.getIswhere()?1:0);
                     field.setJavawhere(vueJson.getJavawhere());
                     field.setIsshowcolumn(vueJson.getIsshowcolumn()?1:0);
-                    field.setComponentsid(vueJson.getControltype());
                     field.setFormat(vueJson.getFormat());
                     field.setMessage(vueJson.getMessage());
+                    field.setControltype(vueJson.getControltype());
                     fields.add(field);
                 }
             }
