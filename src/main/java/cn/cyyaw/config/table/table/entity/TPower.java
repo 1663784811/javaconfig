@@ -38,8 +38,8 @@ public class TPower implements Serializable {
     private Date createtime;
 
     @Basic
-    @Column(name = "pid", length = 10, columnDefinition = "int COMMENT '父级ID'")
-    private Integer pid;
+    @Column(name = "pid", length = 32, columnDefinition = "varchar(32) COMMENT '父级ID'")
+    private String pid;
     @Basic
     @Column(name = "treecode", length = 10, columnDefinition = "varchar(32) not null default '' COMMENT '树码(一级三位)'")
     private String treecode;
@@ -59,6 +59,9 @@ public class TPower implements Serializable {
     @Basic
     @Column(name = "status", length = 10, columnDefinition = "int COMMENT '状态{1:显示,0:隐藏}'")
     private Integer status;
+    @Basic
+    @Column(name = "ispower", length = 10, columnDefinition = "int not null default '0' COMMENT '是否受权限控制{1:是,0:否}'")
+    private Integer ispower;
     @Basic
     @Column(name = "url", columnDefinition = "varchar(255) COMMENT 'url'")
     private String url;

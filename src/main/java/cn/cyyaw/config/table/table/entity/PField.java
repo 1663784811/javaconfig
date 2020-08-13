@@ -71,6 +71,9 @@ public class PField implements Serializable {
     @Column(name = "controltype", columnDefinition = "varchar(20) COMMENT '控件类型'")
     private String controltype;
     @Basic
+    @Column(name = "controldata", columnDefinition = "varchar(255) COMMENT '控件类型'")
+    private String controldata;
+    @Basic
     @Column(name = "max", columnDefinition = "int COMMENT '最大值'")
     private Integer max;
     @Basic
