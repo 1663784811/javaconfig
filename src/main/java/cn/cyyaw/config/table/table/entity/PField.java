@@ -100,4 +100,6 @@ public class PField implements Serializable {
     @Basic
     @Column(name = "sort", columnDefinition = "int COMMENT '排序：从小到大'")
     private Integer sort;
+
+
 }

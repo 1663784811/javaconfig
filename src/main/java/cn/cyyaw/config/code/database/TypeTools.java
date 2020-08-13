@@ -4,6 +4,8 @@ package cn.cyyaw.config.code.database;
 import cn.cyyaw.config.code.tools.entity.java.JavaColumn;
 import cn.cyyaw.config.code.tools.entity.vue.Filters;
 import cn.cyyaw.config.code.tools.entity.vue.VueJson;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -166,6 +168,40 @@ public class TypeTools {
         return vueJsonArrayList;
     }
 
+    public static JSONArray getLabelAndValue(String note){
+        JSONArray filters = new JSONArray();
+        try {
+            int start = note.indexOf("{");
+            int end = note.indexOf("}");
+            if (start != -1 && end != -1) {
+                String tempstr = note.substring(start + 1, end );
+                String[] splitstr = tempstr.split(",");
+                for (int i = 0; i < splitstr.length; i++) {
+                    JSONObject f = new JSONObject();
+                    System.out.println(splitstr[i]);
+                    String[] jsonstr = splitstr[i].split(":");
+                    if (jsonstr.length == 2) {
+                        if("0123456789".contains(jsonstr[0])){
+                            f.put("key", Integer.parseInt(jsonstr[0]));
+                        }else{
+                            f.put("key", jsonstr[0]);
+                        }
+                        if("0123456789".contains(jsonstr[1])){
+                            f.put("title", Integer.parseInt(jsonstr[1]));
+                        }else{
+                            f.put("title", jsonstr[1]);
+                        }
+                        filters.add(f);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filters;
+    }
+
+
     /**
      * @param javaColumn
      * @return
@@ -174,9 +210,8 @@ public class TypeTools {
         VueJson vueJson = new VueJson();
         if (null != javaColumn) {
             vueJson.setKey(javaColumn.getColumnname()); //key
-
             String note = javaColumn.getNote();
-            List filters = new ArrayList<Filters>();
+            List<Filters> filters = new ArrayList();
             if (null != note) {
                 try {
                     int start = note.indexOf("{");

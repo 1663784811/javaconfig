@@ -1,5 +1,7 @@
 package cn.cyyaw.config.code.service.impl;
 
+import cn.cyyaw.common.util.StringUtilWHY;
+import cn.cyyaw.config.code.database.TypeTools;
 import cn.cyyaw.config.code.service.PageService;
 import cn.cyyaw.config.table.table.dao.PFieldDao;
 import cn.cyyaw.config.table.table.dao.PPageComponentsDao;
@@ -54,6 +56,10 @@ public class PageServiceImpl implements PageService {
                         JSONObject js = fieldArr.getJSONObject(j);
                         String componentsid = js.getString("componentsid");
                         if (ctid.equals(componentsid)) {
+                            String controldata = js.getString("controldata");
+                            if(!StringUtilWHY.isEmpty(controldata)){
+                                js.put("selectarr", TypeTools.getLabelAndValue(controldata));
+                            }
                             arr.add(js);
                         }
                     }

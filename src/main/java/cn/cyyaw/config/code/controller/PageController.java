@@ -8,7 +8,6 @@ import cn.cyyaw.config.code.tools.database.DataBase;
 import cn.cyyaw.config.code.tools.entity.java.JavaColumn;
 import cn.cyyaw.config.code.tools.entity.java.JavaData;
 import cn.cyyaw.config.code.tools.entity.vue.VueJson;
-import cn.cyyaw.config.table.table.entity.PField;
 import cn.cyyaw.config.table.table.entity.PPage;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -68,19 +67,21 @@ public class PageController {
                 for(int j=0;j<javacolumns.size();j++){
                     JavaColumn java = javacolumns.get(j);
                     VueJson vueJson = TypeTools.javaColumn2VueJson(java);
-                    PField field = new PField();
-                    field.setTitle(vueJson.getTitle());
-                    field.setKey(vueJson.getKey());
-                    field.setLength(vueJson.getLength());
-                    field.setIsrequire(vueJson.getIsrequire()?1:0);
-                    field.setJavatype(vueJson.getJavatype());
-                    field.setIswhere(vueJson.getIswhere()?1:0);
-                    field.setJavawhere(vueJson.getJavawhere());
-                    field.setIsshowcolumn(vueJson.getIsshowcolumn()?1:0);
-                    field.setFormat(vueJson.getFormat());
-                    field.setMessage(vueJson.getMessage());
-                    field.setControltype(vueJson.getControltype());
-                    fields.add(field);
+                    JSONObject js = new JSONObject();
+                    js.put("title",vueJson.getTitle());
+                    js.put("key",vueJson.getKey());
+                    js.put("length",vueJson.getLength());
+                    js.put("isrequire",vueJson.getIsrequire()?1:0);
+                    js.put("javatype",vueJson.getJavatype());
+                    js.put("iswhere",vueJson.getIswhere()?1:0);
+                    js.put("javawhere",vueJson.getJavawhere());
+                    js.put("isshowcolumn",vueJson.getIsshowcolumn()?1:0);
+                    js.put("format",vueJson.getFormat());
+                    js.put("message",vueJson.getMessage());
+                    js.put("controltype",vueJson.getControltype());
+                    js.put("selectarr", vueJson.getFilters());
+
+                    fields.add(js);
                 }
             }
             json.put("fields", fields);
