@@ -41,6 +41,24 @@ public class TDictionary implements Serializable {
     @Column(name = "type", length = 10, columnDefinition = "int not null COMMENT '字典类型'")
     private Integer type;
 
+    @Basic
+    @Column(name = "name", columnDefinition = "varchar(255) not null COMMENT '名称'")
+    private String name;
+
+    @Basic
+    @Column(name = "[value]", columnDefinition = "varchar(255) COMMENT '值'")
+    private String value;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
