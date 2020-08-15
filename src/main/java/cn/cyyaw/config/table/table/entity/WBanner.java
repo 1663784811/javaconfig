@@ -46,7 +46,12 @@ public class WBanner {
     @Basic
     @Column(name = "img", columnDefinition = "varchar(255) COMMENT '图片地址'")
     private String img;
-
+    @Basic
+    @Column(name = "isshow", length = 10, columnDefinition = "int COMMENT '是否显示{0:否,1:是}'")
+    private Integer isshow;
+    @Basic
+    @Column(name = "position", length = 10, columnDefinition = "int COMMENT '显示位置{1:首页}'")
+    private Integer position;
 }
 
 
