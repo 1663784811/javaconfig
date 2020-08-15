@@ -66,6 +66,6 @@ public class TPower implements Serializable {
     @Column(name = "url", columnDefinition = "varchar(255) COMMENT 'url'")
     private String url;
     @Basic
-    @Column(name = "sort", length = 10, columnDefinition = "int COMMENT '排序'")
+    @Column(name = "sort", length = 10, columnDefinition = "int default '1' COMMENT '排序'")
     private Integer sort;
 }
