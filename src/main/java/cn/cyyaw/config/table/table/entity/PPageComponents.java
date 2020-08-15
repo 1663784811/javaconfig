@@ -2,10 +2,11 @@ package cn.cyyaw.config.table.table.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Data;
-import java.io.Serializable;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -48,6 +49,7 @@ public class PPageComponents implements Serializable{
     @Column(name = "type", columnDefinition = "varchar(15) COMMENT '组件类型{1:表格,2:输入框,3:下拉框}'")
     private String type;
 
-
-
+    @Basic
+    @Column(name = "[table]", columnDefinition = "varchar(32) COMMENT '数据表'")
+    private String table;
 }

@@ -49,6 +49,12 @@ public class JShool {
     @Basic
     @Column(name = "introduction", columnDefinition = "varchar(255) COMMENT '简介'")
     private String introduction;
+    @Basic
+    @Column(name = "isshow", length = 10, columnDefinition = "int default '0' COMMENT '是否显示{0:否,1:是}'")
+    private Integer isshow;
+    @Basic
+    @Column(name = "position", length = 10, columnDefinition = "int default '0' COMMENT '显示位置{1:首页}'")
+    private Integer position;
 }
 
 
