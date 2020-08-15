@@ -104,19 +104,8 @@ public class CommonDaoImpl implements CommonDao {
                 }
             }
             if (addArr.size() > 0) {
-
-                StringBuffer sbm = new StringBuffer();
-                for (int m = 0; m < page.size(); m++) {
-                    if (m != 0) {
-                        sbm.append(",");
-                    }
-                    JSONObject js = page.getJSONObject(m);
-                    sbm.append("`"+js.getString("column_name")+"`");
-                }
-
-                List<String> list = new ArrayList<>();
-
                 for (int i = 0; i < addArr.size(); i++) {
+                    List<String> list = new ArrayList<>();
                     StringBuffer datakey = new StringBuffer();
                     StringBuffer set = new StringBuffer();
                     JSONObject obj = addArr.getJSONObject(i);
