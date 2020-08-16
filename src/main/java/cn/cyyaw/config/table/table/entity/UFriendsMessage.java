@@ -11,11 +11,11 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "u_group_message")
-@org.hibernate.annotations.Table(appliesTo = "u_group_message", comment = "群消息")
-public class UGroupMessage implements Serializable {
+@Table(name = "u_friends_message")
+@org.hibernate.annotations.Table(appliesTo = "u_friends_message", comment = "好友消息表")
+public class UFriendsMessage implements Serializable {
 
-    private static final long serialVersionUID = 13663017723582985L;
+    private static final long serialVersionUID = 13663012723562985L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,21 +38,15 @@ public class UGroupMessage implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
-    @Basic
-    @Column(name = "groupid", columnDefinition = "varchar(32) not null COMMENT 'u_groupid群表id'")
-    private String groupid;
 
     @Basic
-    @Column(name = "userid", columnDefinition = "varchar(32) not null COMMENT 'u_user用户表id'")
+    @Column(name = "userid", columnDefinition = "varchar(32) not null COMMENT 'u_user用户表(当前用户)id'")
     private String userid;
 
     @Basic
-    @Column(name = "username", columnDefinition = "varchar(32) not null COMMENT '用户名'")
-    private String username;
+    @Column(name = "touserid", columnDefinition = "varchar(32) not null COMMENT 'u_user用户表(好友)id'")
+    private String touserid;
 
-    @Basic
-    @Column(name = "face", columnDefinition = "varchar(255) COMMENT '用户头像'")
-    private String face;
 
     @Basic
     @Column(name = "type",length = 10, columnDefinition = "int  not null COMMENT '消息类型{0:文字,1:图片,2:视频}'")
@@ -61,5 +55,6 @@ public class UGroupMessage implements Serializable {
     @Basic
     @Column(name = "content", columnDefinition = "text COMMENT '消息内容'")
     private String content;
+
 
 }

@@ -15,7 +15,7 @@ import java.util.Date;
 @org.hibernate.annotations.Table(appliesTo = "u_group_user", comment = "群用户关联表")
 public class UGroupUser implements Serializable {
 
-    private static final long serialVersionUID = 13663012723582985L;
+    private static final long serialVersionUID = 13663052723582985L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
