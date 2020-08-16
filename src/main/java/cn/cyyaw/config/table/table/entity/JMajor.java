@@ -7,13 +7,14 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "j_major")
 @org.hibernate.annotations.Table(appliesTo = "j_major", comment = "专业")
-public class JMajor {
+public class JMajor  implements Serializable {
 
     private static final long serialVersionUID = 156878262456870L;
     @Id

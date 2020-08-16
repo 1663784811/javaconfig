@@ -7,13 +7,14 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "w_banner")
 @org.hibernate.annotations.Table(appliesTo = "w_banner", comment = "首页banner图")
-public class WBanner {
+public class WBanner  implements Serializable {
     private static final long serialVersionUID = 156878262756870L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
