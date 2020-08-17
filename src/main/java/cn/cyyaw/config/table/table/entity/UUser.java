@@ -81,4 +81,11 @@ public class UUser implements Serializable {
     @Column(name = "status", length = 10, columnDefinition = "int COMMENT '状态{0:正常,1:暂时锁定,2:永久锁定}'")
     private Integer status;
 
+    @Basic
+    @Column(name = "type", length = 10, columnDefinition = "int COMMENT '会员类型{0:普通会员,1:客服}'")
+    private Integer type;
+
+    @Basic
+    @Column(name = "adminid", unique = true, columnDefinition = "varchar(32) COMMENT '客服t_admin表id'")
+    private String adminid;
 }
