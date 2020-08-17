@@ -102,4 +102,13 @@ public class PField implements Serializable {
     private Integer sort;
 
 
+    @Basic
+    @Column(name = "url", columnDefinition = "varchar(255) COMMENT '请求地址'")
+    private String url;
+    @Basic
+    @Column(name = "dataname", columnDefinition = "varchar(255) COMMENT '选择名'")
+    private String dataname;
+    @Basic
+    @Column(name = "datakey", columnDefinition = "varchar(255) COMMENT '选择值'")
+    private String datakey;
 }
