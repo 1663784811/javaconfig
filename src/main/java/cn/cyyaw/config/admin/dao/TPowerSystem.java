@@ -1,7 +1,7 @@
 package cn.cyyaw.config.admin.dao;
 
 
-import cn.cyyaw.config.table.table.entity.TPower;
+import cn.cyyaw.config.table.table.entity.tadmin.TPower;
 import cn.cyyaw.jpa.BaseDao;
 import org.springframework.data.jpa.repository.Query;
 

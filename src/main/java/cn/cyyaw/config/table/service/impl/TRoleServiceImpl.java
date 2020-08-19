@@ -3,7 +3,7 @@ package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.TRoleService;
 import cn.cyyaw.config.table.table.dao.TRoleDao;
-import cn.cyyaw.config.table.table.entity.TRole;
+import cn.cyyaw.config.table.table.entity.tadmin.TRole;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;
 import lombok.extern.slf4j.Slf4j;

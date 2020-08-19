@@ -1,8 +1,8 @@
 package cn.cyyaw.config.admin.dao;
 
 
-import cn.cyyaw.config.table.table.entity.TAdmin;
-import cn.cyyaw.config.table.table.entity.TRole;
+import cn.cyyaw.config.table.table.entity.tadmin.TAdmin;
+import cn.cyyaw.config.table.table.entity.tadmin.TRole;
 import cn.cyyaw.jpa.BaseDao;
 import org.springframework.data.jpa.repository.Query;
 

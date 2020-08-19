@@ -8,7 +8,7 @@ import cn.cyyaw.config.code.tools.database.DataBase;
 import cn.cyyaw.config.code.tools.entity.java.JavaColumn;
 import cn.cyyaw.config.code.tools.entity.java.JavaData;
 import cn.cyyaw.config.code.tools.entity.vue.VueJson;
-import cn.cyyaw.config.table.table.entity.PPage;
+import cn.cyyaw.config.table.table.entity.page.PPage;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package cn.cyyaw.config.admin;
 
 import cn.cyyaw.config.config.shiro.ShiroEnum;
-import cn.cyyaw.config.table.table.entity.TAdmin;
+import cn.cyyaw.config.table.table.entity.tadmin.TAdmin;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;

@@ -2,7 +2,7 @@ package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.CComponentsService;
 import cn.cyyaw.config.table.table.dao.CComponentsDao;
-import cn.cyyaw.config.table.table.entity.CComponents;
+import cn.cyyaw.config.table.table.entity.config.CComponents;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;
 import lombok.extern.slf4j.Slf4j;

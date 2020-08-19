@@ -1,7 +1,7 @@
 package cn.cyyaw.config.table.table.dao;
 
 
-import cn.cyyaw.config.table.table.entity.PField;
+import cn.cyyaw.config.table.table.entity.page.PField;
 import cn.cyyaw.jpa.BaseDao;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

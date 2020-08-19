@@ -3,7 +3,7 @@ package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.TPhotoClassificationService;
 import cn.cyyaw.config.table.table.dao.TPhotoClassificationDao;
-import cn.cyyaw.config.table.table.entity.TPhotoClassification;
+import cn.cyyaw.config.table.table.entity.tadmin.TPhotoClassification;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;
 import lombok.extern.slf4j.Slf4j;

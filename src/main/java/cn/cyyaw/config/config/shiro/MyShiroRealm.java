@@ -2,9 +2,9 @@ package cn.cyyaw.config.config.shiro;
 
 import cn.cyyaw.common.util.WhyException;
 import cn.cyyaw.config.admin.service.LoginService;
-import cn.cyyaw.config.table.table.entity.TAdmin;
-import cn.cyyaw.config.table.table.entity.TPower;
-import cn.cyyaw.config.table.table.entity.TRole;
+import cn.cyyaw.config.table.table.entity.tadmin.TAdmin;
+import cn.cyyaw.config.table.table.entity.tadmin.TPower;
+import cn.cyyaw.config.table.table.entity.tadmin.TRole;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -12,7 +12,6 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -22,7 +21,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 

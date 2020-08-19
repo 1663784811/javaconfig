@@ -3,7 +3,7 @@ package cn.cyyaw.config.admin.service.impl;
 
 import cn.cyyaw.config.admin.dao.MenuDao;
 import cn.cyyaw.config.admin.service.MenuService;
-import cn.cyyaw.config.table.table.entity.TPower;
+import cn.cyyaw.config.table.table.entity.tadmin.TPower;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

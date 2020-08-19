@@ -1,7 +1,7 @@
 package cn.cyyaw.config.table.service;
 
 import cn.cyyaw.config.table.table.dao.TPowerDao;
-import cn.cyyaw.config.table.table.entity.TPower;
+import cn.cyyaw.config.table.table.entity.tadmin.TPower;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

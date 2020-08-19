@@ -2,7 +2,7 @@ package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.TAdminMessageService;
 import cn.cyyaw.config.table.table.dao.TAdminMessageDao;
-import cn.cyyaw.config.table.table.entity.TAdminMessage;
+import cn.cyyaw.config.table.table.entity.tadmin.TAdminMessage;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;
 import lombok.extern.slf4j.Slf4j;

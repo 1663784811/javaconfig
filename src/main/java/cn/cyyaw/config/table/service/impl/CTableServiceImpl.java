@@ -2,7 +2,7 @@ package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.CTableService;
 import cn.cyyaw.config.table.table.dao.CTableDao;
-import cn.cyyaw.config.table.table.entity.CTable;
+import cn.cyyaw.config.table.table.entity.config.CTable;
 import cn.cyyaw.jpa.BaseDao;
 
 import cn.cyyaw.jpa.BaseService;

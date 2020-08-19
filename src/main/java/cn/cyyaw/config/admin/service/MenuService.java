@@ -1,6 +1,6 @@
 package cn.cyyaw.config.admin.service;
 
-import cn.cyyaw.config.table.table.entity.TPower;
+import cn.cyyaw.config.table.table.entity.tadmin.TPower;
 
 import java.util.List;
 
