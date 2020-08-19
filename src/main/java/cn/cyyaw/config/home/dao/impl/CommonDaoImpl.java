@@ -114,6 +114,7 @@ public class CommonDaoImpl implements CommonDao {
                     for (int j = 0; j < page.size(); j++) {
                         JSONObject js = page.getJSONObject(j);
                         String name = js.getString("column_name");
+                        String dataType = js.getString("data_type");
                         String cn = obj.getString(name);
                         // 初始化数据
                         if (null == cn && name.equals("tid")) {
@@ -123,8 +124,11 @@ public class CommonDaoImpl implements CommonDao {
                         } else if (null == cn && name.equals("del")) {
                             cn = "0";
                         }
-
-                        if (null != cn || "treecode".equals(name)) {
+                        if (
+                            (!"datetime".equals(dataType) && null != cn)
+                            ||  "treecode".equals(name)
+                            || (!StringUtilWHY.isEmpty(cn) )
+                        ) {
                             if (datakey.length() > 0) {
                                 datakey.append(",`" + name + "`");
                             } else {
@@ -184,9 +188,10 @@ public class CommonDaoImpl implements CommonDao {
                         for (int j = 0; j < page.size(); j++) {
                             JSONObject js = page.getJSONObject(j);
                             String name = js.getString("column_name");
+                            String dataType = js.getString("data_type");
                             String columnKey = js.getString("column_key");
                             String cn = obj.getString(name);
-                            if (null != cn) {
+                            if ((!"datetime".equals(dataType) && null != cn) || (!StringUtilWHY.isEmpty(cn) )) {
                                 if (columnKey.equals("PRI")) {
                                     pkvalue = cn;
                                 } else {
