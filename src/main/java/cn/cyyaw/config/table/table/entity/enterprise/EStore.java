@@ -37,6 +37,11 @@ public class EStore implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
+
+    @Basic
+    @Column(name = "enterpriseid", columnDefinition = "varchar(32) COMMENT '所属企业e_enterprise表ID'")
+    private String enterpriseid;
+
     @Basic
     @Column(name = "code", unique = true, length = 32, columnDefinition = "varchar(32) not null COMMENT '门店编号(企业编号+门店号)'")
     private String code;
