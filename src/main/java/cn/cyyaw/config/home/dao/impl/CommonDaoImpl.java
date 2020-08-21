@@ -117,11 +117,11 @@ public class CommonDaoImpl implements CommonDao {
                         String dataType = js.getString("data_type");
                         String cn = obj.getString(name);
                         // 初始化数据
-                        if (null == cn && name.equals("tid")) {
+                        if (StringUtilWHY.isEmpty(cn) && name.equals("tid")) {
                             cn = StringUtilWHY.getUUID();
-                        } else if (null == cn && name.equals("createtime")) {
+                        } else if (StringUtilWHY.isEmpty(cn) && name.equals("createtime")) {
                             cn = DateUtils.getStringDate(new Date());
-                        } else if (null == cn && name.equals("del")) {
+                        } else if (StringUtilWHY.isEmpty(cn) && name.equals("del")) {
                             cn = "0";
                         }
                         if (
