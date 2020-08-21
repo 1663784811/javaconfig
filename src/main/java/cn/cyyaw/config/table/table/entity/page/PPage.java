@@ -19,7 +19,7 @@ public class PPage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic
-    @Column(name = "id", unique = true, columnDefinition = "int auto_increment COMMENT ''")
+    @Column(name = "id", unique = true, columnDefinition = "int auto_increment COMMENT 'id'")
     private Integer id;
     @Basic
     @Column(name = "tid", unique = true, nullable = false, columnDefinition = "varchar(32) COMMENT 'tid'")

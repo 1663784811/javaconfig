@@ -18,7 +18,7 @@ public class TAdmin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic
-    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT ''")
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT 'id'")
     private Integer id;
     @Basic
     @Column(name = "account", length = 32, nullable = true, columnDefinition = "varchar(32) COMMENT '账号'")

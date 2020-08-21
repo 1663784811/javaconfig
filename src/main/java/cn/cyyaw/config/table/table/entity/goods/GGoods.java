@@ -1,4 +1,4 @@
-package cn.cyyaw.config.table.table.entity;
+package cn.cyyaw.config.table.table.entity.goods;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,7 +20,7 @@ public class GGoods implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic
-    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT ''")
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT 'id'")
     private Integer id;
     @Basic
     @Column(name = "tid", unique = true, length = 32, columnDefinition = "varchar(32) not null COMMENT 'tid'")

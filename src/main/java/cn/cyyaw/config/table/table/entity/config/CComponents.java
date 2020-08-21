@@ -18,7 +18,7 @@ public class CComponents implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic
-    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT ''")
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT 'id'")
     private Integer id;
     @Basic
     @Column(name = "components", columnDefinition = "text COMMENT '组件'")

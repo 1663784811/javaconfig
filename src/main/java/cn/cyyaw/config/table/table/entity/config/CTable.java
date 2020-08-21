@@ -14,7 +14,7 @@ public class CTable implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic
-    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT ''")
+    @Column(name = "id", unique = true, nullable = false, columnDefinition = "int auto_increment COMMENT 'id'")
     private Integer id;
     @Basic
     @Column(name = "[database]", columnDefinition = "varchar(255) COMMENT '数据库'")
