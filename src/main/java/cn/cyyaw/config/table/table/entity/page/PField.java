@@ -41,7 +41,7 @@ public class PField implements Serializable {
     @Column(name = "pageid", columnDefinition = "varchar(32) COMMENT '页面表p_page_td'")
     private String pageid;
     @Basic
-    @Column(name = "componentsid", columnDefinition = "varchar(32) COMMENT '组件表p_page_components'")
+    @Column(name = "componentsid", nullable = false, columnDefinition = "varchar(32) not null COMMENT '组件表p_page_components'")
     private String componentsid;
     @Basic
     @Column(name = "[key]", columnDefinition = "varchar(20) COMMENT 'key'")

@@ -68,6 +68,10 @@ public class OOrder implements Serializable {
     private Integer type;
 
     @Basic
+    @Column(name = "status", columnDefinition = "varchar(32) COMMENT '订单状态'")
+    private String status;
+
+    @Basic
     @Column(name = "addressid", columnDefinition = "varchar(32) COMMENT '地址ID'")
     private String addressid;
     @Basic
