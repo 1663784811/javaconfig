@@ -1,4 +1,4 @@
-package cn.cyyaw.config.table.table.entity.goods;
+package cn.cyyaw.config.table.table.entity.order;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -12,10 +12,10 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "g_goods")
-@org.hibernate.annotations.Table(appliesTo = "g_goods", comment = "商品表")
-public class GGoods implements Serializable {
-    private static final long serialVersionUID = 15687826273933758L;
+@Table(name = "o_discount")
+@org.hibernate.annotations.Table(appliesTo = "o_discount", comment = "订单优惠表")
+public class ODiscount implements Serializable {
+    private static final long serialVersionUID = 156873426273133758L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,43 +38,23 @@ public class GGoods implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
+    @Basic
+    @Column(name = "orderid", columnDefinition = "varchar(32) not null COMMENT 'o_order订单表ID'")
+    private String orderid;
+    @Basic
+    @Column(name = "otherid", columnDefinition = "varchar(32) COMMENT '附ID'")
+    private String otherid;
 
     @Basic
-    @Column(name = "name",  columnDefinition = "varchar(255) not null COMMENT '商品名称'")
-    private String name;
-    @Basic
-    @Column(name="price", columnDefinition = "decimal(18,2 ) COMMENT '价格'")
-    private BigDecimal price;
-    @Basic
-    @Column(name="lowprice", columnDefinition = "decimal(18,2 ) COMMENT '最低价格'")
-    private BigDecimal lowprice;
-    @Basic
-    @Column(name="highprice", columnDefinition = "decimal(18,2 ) COMMENT '最高价格'")
-    private BigDecimal highprice;
-
+    @Column(name = "type", columnDefinition = "int not null default '0' COMMENT '优惠类型{0:优惠金额,1:赠送积分,2:优惠券}'")
+    private Integer type;
 
     @Basic
-    @Column(name = "typecode",   length = 32, columnDefinition = "varchar(32) COMMENT '品类Code'")
-    private String typecode;
-    @Basic
-    @Column(name = "brandcode",   length = 32, columnDefinition = "varchar(32) COMMENT '品牌Code'")
-    private String brandcode;
-
+    @Column(name="money", columnDefinition = "decimal(18,2) not null default '0' COMMENT '优惠额度'")
+    private BigDecimal money;
 
     @Basic
-    @Column(name = "photo",  columnDefinition = "varchar(255) COMMENT '商品图片'")
-    private String photo;
-
-
-
-
-
-
-
-
-
-
-
-
+    @Column(name = "description", columnDefinition = "varchar(255) COMMENT '优惠描述'")
+    private String description;
 
 }
