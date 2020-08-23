@@ -30,7 +30,7 @@ public class ChatLoginController {
      * }
      */
     public void loginFn(Channel channel, MessageEntity msg) {
-        String userid = msg.getMessage();
+        String userid = msg.getFrom();
         UUser users = uUserDao.findFirstByTid(userid);
         JSONObject gjs = new JSONObject();
         if(null != users){

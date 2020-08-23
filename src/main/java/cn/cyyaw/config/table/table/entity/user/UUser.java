@@ -53,7 +53,7 @@ public class UUser implements Serializable {
     @Column(name = "nickname", length = 32, columnDefinition = "varchar(32) COMMENT '昵称'")
     private String nickname;
     @Basic
-    @Column(name = "face", length = 255, columnDefinition = "varchar(255) COMMENT '用户头像'")
+    @Column(name = "face", columnDefinition = "varchar(255) COMMENT '用户头像'")
     private String face;
 
     @Basic
