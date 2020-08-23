@@ -71,6 +71,11 @@ public class ChatLoginController {
             userid = StringUtilWHY.getUUID();
         }
         UGroup uGroup = uGroupDao.findByTid(groupid);
+        Map<String, ChannelObject> allChannel = ChannelData.allChannel;
+        //====== 设置
+        ChannelObject ch = allChannel.get(channel.id().asLongText());
+        ch.setTid(userid);
+        ch.setType(1);
         if(null == uGroup){
             groupid = StringUtilWHY.getUUID();
             // 创建群
@@ -83,7 +88,6 @@ public class ChatLoginController {
             group.setType(1);
             group.setNote("客服群");
             uGroupDao.save(group);
-            Map<String, ChannelObject> allChannel = ChannelData.allChannel;
             // 拉客服
             for (UUser uUser : uUserDao.findByType(1)) {
                 String tid = uUser.getTid();
@@ -99,9 +103,9 @@ public class ChatLoginController {
                 UGroupUser gr = uGroupUserDao.save(ur);
                 // 给客服发送消息
                 for(String key : allChannel.keySet()){
-                    ChannelObject ch = allChannel.get(key);
-                    if(tid.equals(ch.getTid())){
-                        Channel chan = ch.getChannel();
+                    ChannelObject chano = allChannel.get(key);
+                    if(tid.equals(chano.getTid())){
+                        Channel chan = chano.getChannel();
                         JSONObject js = new JSONObject();
                         js.put("message", gr);
                         js.put("from", groupid);
@@ -121,11 +125,8 @@ public class ChatLoginController {
             ur.setUserid(userid);
             ur.setType(1);
             uGroupUserDao.save(ur);
-            //====== 设置
-            ChannelObject ch = allChannel.get(channel.id().asLongText());
-            ch.setId(userid);
-            ch.setType(1);
         }
+
         JSONObject gjs = new JSONObject();
         gjs.put("message", "联系成功");
         gjs.put("from", groupid);

@@ -75,17 +75,20 @@ public class ChatGroupController {
             for(int i=0;i<uGroupUsers.size();i++){
                 UGroupUser u = uGroupUsers.get(i);
                 String tid = u.getUserid();
-                // 给客服发送消息
-                for(String key : allChannel.keySet()){
-                    ChannelObject ch = allChannel.get(key);
-                    if(tid.equals(ch.getTid()) && !tid.equals(from)){
-                        Channel chan = ch.getChannel();
-                        JSONObject js = new JSONObject();
-                        js.put("message", message);
-                        js.put("from", m.getGroupid());
-                        js.put("to", tid);
-                        js.put("responseType", 701);
-                        chan.writeAndFlush(new TextWebSocketFrame(js.toJSONString()));
+                if(!tid.equals(from)){
+                    // 给客服发送消息
+                    for(String key : allChannel.keySet()){
+                        ChannelObject ch = allChannel.get(key);
+                        String cid = ch.getTid();
+                        if(tid.equals(cid)){
+                            Channel chan = ch.getChannel();
+                            JSONObject js = new JSONObject();
+                            js.put("message", message);
+                            js.put("from", m.getGroupid());
+                            js.put("to", tid);
+                            js.put("responseType", 701);
+                            chan.writeAndFlush(new TextWebSocketFrame(js.toJSONString()));
+                        }
                     }
                 }
             }
