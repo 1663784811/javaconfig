@@ -1,7 +1,7 @@
 package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.TAdminMessageService;
-import cn.cyyaw.config.table.table.dao.TAdminMessageDao;
+import cn.cyyaw.config.table.table.dao.tadmin.TAdminMessageDao;
 import cn.cyyaw.config.table.table.entity.tadmin.TAdminMessage;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;

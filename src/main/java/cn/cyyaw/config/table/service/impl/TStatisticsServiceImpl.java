@@ -2,7 +2,7 @@ package cn.cyyaw.config.table.service.impl;
 
 
 import cn.cyyaw.config.table.service.TStatisticsService;
-import cn.cyyaw.config.table.table.dao.TStatisticsDao;
+import cn.cyyaw.config.table.table.dao.tadmin.TStatisticsDao;
 import cn.cyyaw.config.table.table.entity.tadmin.TStatistics;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;

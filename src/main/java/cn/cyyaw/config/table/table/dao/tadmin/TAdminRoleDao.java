@@ -1,4 +1,4 @@
-package cn.cyyaw.config.table.table.dao;
+package cn.cyyaw.config.table.table.dao.tadmin;
 
 
 import cn.cyyaw.config.table.table.entity.tadmin.TAdminRole;

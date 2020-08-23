@@ -1,7 +1,7 @@
 package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.CFieldService;
-import cn.cyyaw.config.table.table.dao.CFieldDao;
+import cn.cyyaw.config.table.table.dao.config.CFieldDao;
 import cn.cyyaw.config.table.table.entity.config.CField;
 import cn.cyyaw.jpa.BaseDao;
 

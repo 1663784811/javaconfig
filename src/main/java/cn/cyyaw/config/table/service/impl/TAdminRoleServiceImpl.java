@@ -2,7 +2,7 @@ package cn.cyyaw.config.table.service.impl;
 
 
 import cn.cyyaw.config.table.service.TAdminRoleService;
-import cn.cyyaw.config.table.table.dao.TAdminRoleDao;
+import cn.cyyaw.config.table.table.dao.tadmin.TAdminRoleDao;
 import cn.cyyaw.config.table.table.entity.tadmin.TAdminRole;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;

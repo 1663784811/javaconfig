@@ -1,4 +1,4 @@
-package cn.cyyaw.config.table.table.dao;
+package cn.cyyaw.config.table.table.dao.config;
 
 
 import cn.cyyaw.config.table.table.entity.config.CField;

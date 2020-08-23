@@ -8,7 +8,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.group.ChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,13 @@ public class MessageController {
 
     @Autowired
     private RequestMessageController requestMessageController;
+
+    @Autowired
+    private ChatGroupController chatGroupController;
+
+    @Autowired
+    private ChatUserController chatUserController;
+
 
     /**
      * 消息集中处理
@@ -62,11 +68,14 @@ public class MessageController {
                     break;
                 case 4:  //注册
                     break;
-                case 5:  //登录
-                    String userID = chatLoginController.loginFn(channel, messageEntity);
-                    map.put("responseType",5);
-                    map.put("message",userID);
-                    ctx.writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(map)));
+                case 100:  //登录返回登录信息
+                    chatLoginController.loginFn(channel, messageEntity);
+                    break;
+                case 600:  //获取好友信息
+                    chatUserController.getUserInfo(channel, messageEntity);
+                    break;
+                case 700:  //获取群信息
+                    chatGroupController.getGroupInfo(channel, messageEntity);
                     break;
                 case 6:  //扫码成功
                     scanSuccess(ctx, messageEntity.getFrom(), messageEntity.getTo());

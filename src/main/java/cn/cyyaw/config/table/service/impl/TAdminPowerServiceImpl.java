@@ -1,7 +1,7 @@
 package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.TAdminPowerService;
-import cn.cyyaw.config.table.table.dao.TAdminPowerDao;
+import cn.cyyaw.config.table.table.dao.tadmin.TAdminPowerDao;
 import cn.cyyaw.config.table.table.entity.tadmin.TAdminPower;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;

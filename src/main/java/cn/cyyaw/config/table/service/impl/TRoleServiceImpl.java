@@ -2,7 +2,7 @@ package cn.cyyaw.config.table.service.impl;
 
 
 import cn.cyyaw.config.table.service.TRoleService;
-import cn.cyyaw.config.table.table.dao.TRoleDao;
+import cn.cyyaw.config.table.table.dao.tadmin.TRoleDao;
 import cn.cyyaw.config.table.table.entity.tadmin.TRole;
 import cn.cyyaw.jpa.BaseDao;
 import cn.cyyaw.jpa.BaseService;

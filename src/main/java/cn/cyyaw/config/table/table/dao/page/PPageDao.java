@@ -1,4 +1,4 @@
-package cn.cyyaw.config.table.table.dao;
+package cn.cyyaw.config.table.table.dao.page;
 
 
 import cn.cyyaw.config.table.table.entity.page.PPage;

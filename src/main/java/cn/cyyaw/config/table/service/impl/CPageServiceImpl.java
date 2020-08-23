@@ -1,7 +1,7 @@
 package cn.cyyaw.config.table.service.impl;
 
 import cn.cyyaw.config.table.service.CPageService;
-import cn.cyyaw.config.table.table.dao.CPageDao;
+import cn.cyyaw.config.table.table.dao.config.CPageDao;
 import cn.cyyaw.config.table.table.entity.config.CPage;
 import cn.cyyaw.jpa.BaseDao;
 
