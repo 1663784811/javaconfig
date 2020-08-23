@@ -33,7 +33,7 @@ public class ChatGroupController {
 
     // 获取群信息
     public void getGroupInfo(Channel channel, MessageEntity msg) {
-        String userid = msg.getMessage();
+        String userid = msg.getFrom();
         List<UGroup> uGroups = uGroupDao.findByUserid(userid);
         JSONObject gjs = new JSONObject();
         gjs.put("message", uGroups);
@@ -53,14 +53,20 @@ public class ChatGroupController {
         m.setCreatetime(new Date());
         m.setDel(0);
         m.setGroupid(to);
-        m.setContent(to);
+        m.setContent(msg.getMessage());
         m.setFace(null);
         m.setUserid(from);
-        m.setUsername(null);
+        m.setUsername("");
         m.setType(type == null ? 0 : type);
         uGroupMessageDao.save(m);
         //发送给群成员
 
+//        String lid = channel.id().asLongText();
+//        ChannelObject channelObject = ChannelData.allChannel.get(lid);
+//        if(null != channelObject){
+//            channelObject.setId(tid);
+//            channelObject.setTid(tid);
+//        }
 
 
         JSONObject gjs = new JSONObject();

@@ -101,6 +101,7 @@ public class ChatLoginController {
             ur.setUserid(userid);
             ur.setType(1);
             uGroupUserDao.save(ur);
+            // 给客服发送消息
         }
         JSONObject gjs = new JSONObject();
         gjs.put("message", "联系成功");
