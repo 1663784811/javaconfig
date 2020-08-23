@@ -57,7 +57,7 @@ public class UGroup  implements Serializable {
     private String address;
 
     @Basic
-    @Column(name = "type", length = 10, columnDefinition = "int not null default '0' COMMENT '群类型{0:聊天}'")
+    @Column(name = "type", length = 10, columnDefinition = "int not null default '0' COMMENT '群类型{0:聊天,1:客服}'")
     private Integer type;
 
 

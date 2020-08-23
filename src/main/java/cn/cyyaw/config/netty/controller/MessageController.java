@@ -66,9 +66,10 @@ public class MessageController {
                     break;
                 case 3:  //广播
                     break;
-                case 4:  //注册
+                case 100:  // 临时聊天注册
+                    chatLoginController.linkServer(channel, messageEntity);
                     break;
-                case 100:  //登录返回登录信息
+                case 500:  //登录返回登录信息
                     chatLoginController.loginFn(channel, messageEntity);
                     break;
                 case 600:  //获取好友信息

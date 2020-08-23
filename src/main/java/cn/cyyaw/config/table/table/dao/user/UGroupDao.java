@@ -11,4 +11,8 @@ public interface UGroupDao extends BaseDao<UGroup, Integer> {
 
     @Query("select m from UGroup m where m.tid in (select t.groupid from UGroupUser t where t.userid = ?1 ) ")
     List<UGroup> findByUserid(String userid);
+
+
+    UGroup findByTid(String tid);
+
 }

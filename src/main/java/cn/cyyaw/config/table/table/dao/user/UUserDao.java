@@ -15,4 +15,6 @@ public interface UUserDao extends BaseDao<UUser, Integer> {
 
 
     UUser findFirstByTid(String userid);
+
+    List<UUser> findByType(Integer type);
 }
