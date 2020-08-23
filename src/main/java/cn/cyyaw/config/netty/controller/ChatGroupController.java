@@ -6,10 +6,10 @@ import cn.cyyaw.config.netty.entity.ChannelObject;
 import cn.cyyaw.config.netty.entity.MessageEntity;
 import cn.cyyaw.config.table.table.dao.user.UGroupDao;
 import cn.cyyaw.config.table.table.dao.user.UGroupMessageDao;
-import cn.cyyaw.config.table.table.dao.user.UUserDao;
+import cn.cyyaw.config.table.table.dao.user.UGroupUserDao;
 import cn.cyyaw.config.table.table.entity.user.UGroup;
 import cn.cyyaw.config.table.table.entity.user.UGroupMessage;
-import cn.cyyaw.config.table.table.entity.user.UUser;
+import cn.cyyaw.config.table.table.entity.user.UGroupUser;
 import com.alibaba.fastjson.JSONObject;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -34,7 +34,7 @@ public class ChatGroupController {
     private UGroupDao uGroupDao;
 
     @Autowired
-    private UUserDao uUserDao;
+    private UGroupUserDao uGroupUserDao;
 
     @Autowired
     private UGroupMessageDao uGroupMessageDao;
@@ -70,11 +70,11 @@ public class ChatGroupController {
         uGroupMessageDao.save(m);
         //发送给群成员
         Map<String, ChannelObject> allChannel = ChannelData.allChannel;
-        List<UUser> users = uUserDao.findByGroup(to);
-        if(null != users){
-            for(int i=0;i<users.size();i++){
-                UUser u = users.get(i);
-                String tid = u.getTid();
+        List<UGroupUser> uGroupUsers = uGroupUserDao.findByGroupid(to);
+        if(null != uGroupUsers){
+            for(int i=0;i<uGroupUsers.size();i++){
+                UGroupUser u = uGroupUsers.get(i);
+                String tid = u.getUserid();
                 // 给客服发送消息
                 for(String key : allChannel.keySet()){
                     ChannelObject ch = allChannel.get(key);
@@ -92,7 +92,7 @@ public class ChatGroupController {
         }
         JSONObject gjs = new JSONObject();
         gjs.put("message", "发送成功");
-        gjs.put("responseType", 701);
+        gjs.put("responseType", 200);
         channel.writeAndFlush(new TextWebSocketFrame(gjs.toJSONString()));
     }
 }

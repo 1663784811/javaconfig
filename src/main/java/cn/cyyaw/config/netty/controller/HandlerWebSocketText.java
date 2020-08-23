@@ -1,12 +1,10 @@
 package cn.cyyaw.config.netty.controller;
 
 import cn.cyyaw.config.netty.config.ChannelData;
-import cn.cyyaw.config.netty.controller.MessageController;
 import cn.cyyaw.config.netty.entity.ChannelObject;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +65,7 @@ public class HandlerWebSocketText extends SimpleChannelInboundHandler<TextWebSoc
         log.info("================ exceptionCaught:出现异常===========" + lid);
         ctx.close();
         ChannelData.allChannel.remove(lid);
+        cause.printStackTrace();
     }
 
 
