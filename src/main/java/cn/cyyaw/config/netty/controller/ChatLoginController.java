@@ -2,6 +2,8 @@ package cn.cyyaw.config.netty.controller;
 
 
 import cn.cyyaw.common.util.StringUtilWHY;
+import cn.cyyaw.config.netty.config.ChannelData;
+import cn.cyyaw.config.netty.entity.ChannelObject;
 import cn.cyyaw.config.netty.entity.MessageEntity;
 import cn.cyyaw.config.table.table.dao.user.UGroupDao;
 import cn.cyyaw.config.table.table.dao.user.UGroupUserDao;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * 注册身份
@@ -46,7 +49,9 @@ public class ChatLoginController {
         if(null != users){
             gjs.put("message", users);
             gjs.put("responseType", 500);
-            channel.writeAndFlush(new TextWebSocketFrame(gjs.toJSONString()));
+            Map<String, ChannelObject> allChannel = ChannelData.allChannel;
+            ChannelObject ch = allChannel.get(channel.id().asLongText());
+            ch.setTid(users.getTid());
         }else {
             gjs.put("message", "登录失败");
             gjs.put("responseType", 400);
@@ -78,8 +83,10 @@ public class ChatLoginController {
             group.setType(1);
             group.setNote("客服群");
             uGroupDao.save(group);
+            Map<String, ChannelObject> allChannel = ChannelData.allChannel;
             // 拉客服
             for (UUser uUser : uUserDao.findByType(1)) {
+                String tid = uUser.getTid();
                 UGroupUser ur = new UGroupUser();
                 ur.setTid(StringUtilWHY.getUUID());
                 ur.setCreatetime(new Date());
@@ -87,9 +94,22 @@ public class ChatLoginController {
                 ur.setGrade(0);
                 ur.setGroupid(groupid);
                 ur.setNote("客服群");
-                ur.setUserid(uUser.getTid());
+                ur.setUserid(tid);
                 ur.setType(2);
-                uGroupUserDao.save(ur);
+                UGroupUser gr = uGroupUserDao.save(ur);
+                // 给客服发送消息
+                for(String key : allChannel.keySet()){
+                    ChannelObject ch = allChannel.get(key);
+                    if(tid.equals(ch.getTid())){
+                        Channel chan = ch.getChannel();
+                        JSONObject js = new JSONObject();
+                        js.put("message", gr);
+                        js.put("from", groupid);
+                        js.put("to", tid);
+                        js.put("responseType", 702);
+                        chan.writeAndFlush(new TextWebSocketFrame(js.toJSONString()));
+                    }
+                }
             }
             UGroupUser ur = new UGroupUser();
             ur.setTid(StringUtilWHY.getUUID());
@@ -101,7 +121,10 @@ public class ChatLoginController {
             ur.setUserid(userid);
             ur.setType(1);
             uGroupUserDao.save(ur);
-            // 给客服发送消息
+            //====== 设置
+            ChannelObject ch = allChannel.get(channel.id().asLongText());
+            ch.setId(userid);
+            ch.setType(1);
         }
         JSONObject gjs = new JSONObject();
         gjs.put("message", "联系成功");

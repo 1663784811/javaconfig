@@ -32,6 +32,8 @@ responseType : 600     //  好友列表
 
 responseType : 601     //  发送消息
 
+responseType : 602     //  添加好友
+
 
 
 ==============  群
@@ -40,6 +42,8 @@ responseType : 601     //  发送消息
 responseType : 700     //  群列表
 
 responseType : 701     //  发送群消息
+
+responseType : 702     //  添加群
 
 
 
