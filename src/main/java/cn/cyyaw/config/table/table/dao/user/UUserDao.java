@@ -17,4 +17,9 @@ public interface UUserDao extends BaseDao<UUser, Integer> {
     UUser findFirstByTid(String userid);
 
     List<UUser> findByType(Integer type);
+
+
+
+    @Query("select m from UUser m where m.tid in ( select t.userid from UGroupUser t where t.groupid = ?1)")
+    List<UUser> findByGroup(String userid);
 }
