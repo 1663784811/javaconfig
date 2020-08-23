@@ -78,6 +78,9 @@ public class MessageController {
                 case 700:  //获取群信息
                     chatGroupController.getGroupInfo(channel, messageEntity);
                     break;
+                case 701:  //发送群消息
+                    chatGroupController.sendGroupMessage(channel, messageEntity);
+                    break;
                 case 6:  //扫码成功
                     scanSuccess(ctx, messageEntity.getFrom(), messageEntity.getTo());
                     break;
