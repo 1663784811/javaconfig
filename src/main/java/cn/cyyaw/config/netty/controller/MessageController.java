@@ -81,6 +81,21 @@ public class MessageController {
                 case 701:  //发送群消息
                     chatGroupController.sendGroupMessage(channel, messageEntity);
                     break;
+                case 702:  //发送群消息
+                    chatGroupController.sendGroupMessage(channel, messageEntity);
+                    break;
+//                case 703:  // 上线通知
+//                    chatGroupController.sendGroupMessage(channel, messageEntity);
+//                    break;
+//                case 704:  // 下线通知
+//                    chatGroupController.sendGroupMessage(channel, messageEntity);
+//                    break;
+                case 705:  // 添加历史
+                    chatGroupController.getHistory(channel, messageEntity);
+                    break;
+                case 706:  // 获取群用户
+                    chatGroupController.getGroupUser(channel, messageEntity);
+                    break;
                 case 6:  //扫码成功
                     scanSuccess(ctx, messageEntity.getFrom(), messageEntity.getTo());
                     break;
