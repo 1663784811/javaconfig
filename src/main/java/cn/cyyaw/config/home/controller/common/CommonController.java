@@ -1,4 +1,4 @@
-package cn.cyyaw.config.home.controller;
+package cn.cyyaw.config.home.controller.common;
 
 import cn.cyyaw.config.home.service.CommonService;
 import com.alibaba.fastjson.JSONObject;
@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+
+/**
+ * 公共模块
+ */
 @RequestMapping("/home/common")
 @RestController
 public class CommonController {

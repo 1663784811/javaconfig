@@ -1,4 +1,4 @@
-package cn.cyyaw.config.home.controller;
+package cn.cyyaw.config.home.controller.file;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * 上传文件
+ */
 @Slf4j
 @RestController
 @RequestMapping("/upload")

@@ -1,4 +1,4 @@
-package cn.cyyaw.config.home.controller;
+package cn.cyyaw.config.home.controller.index;
 
 
 import cn.cyyaw.common.entity.SelectEntity;
@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * 首页
+ */
 @RequestMapping("/home/index")
 @RestController
 public class IndexController {
