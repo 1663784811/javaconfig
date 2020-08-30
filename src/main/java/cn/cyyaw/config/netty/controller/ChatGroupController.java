@@ -133,7 +133,7 @@ public class ChatGroupController {
                 String groupid = obj.getString("id");
                 Date createtime = obj.getDate("time");
                 //查询数据
-                Pageable pageable = PageRequest.of(0, 10, Sort.by("createtime").descending());
+                Pageable pageable = PageRequest.of(0, 100, Sort.by("createtime").descending());
                 List<UGroupMessage> messages = uGroupMessageDao.findByGroupidAndCreatetime(groupid, createtime, pageable);
                 //发送数据
                 JSONObject gjs = new JSONObject();
