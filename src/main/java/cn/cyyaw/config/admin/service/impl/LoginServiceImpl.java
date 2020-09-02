@@ -65,7 +65,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     /**
-     * 用户注册
+     * 管理员注册
      *
      * @param tAdmin
      * @return

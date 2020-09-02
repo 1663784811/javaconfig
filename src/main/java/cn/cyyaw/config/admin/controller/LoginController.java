@@ -3,6 +3,8 @@ package cn.cyyaw.config.admin.controller;
 import cn.cyyaw.common.util.StringUtilWHY;
 import cn.cyyaw.config.admin.service.LoginService;
 import cn.cyyaw.config.config.shiro.ShiroEnum;
+import cn.cyyaw.config.table.service.EEnterpriseService;
+import cn.cyyaw.config.table.table.entity.enterprise.EEnterprise;
 import cn.cyyaw.config.table.table.entity.tadmin.TAdmin;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -27,6 +29,10 @@ public class LoginController {
 
     @Autowired
     private LoginService loginService;
+
+    @Autowired
+    private EEnterpriseService eEnterpriseService;
+
     /**
      * 登录
      */
@@ -80,6 +86,24 @@ public class LoginController {
         loginMap.put("data", subject.getSession().getAttribute(ShiroEnum.USERINFO));
         return loginMap;
     }
+
+    /**
+     * 注册企业
+     */
+    @PostMapping("/registerEnterprise")
+    public Map registerEnterprise(@RequestBody HashMap<String,Object> map) {
+        //第一步：验证
+        EEnterprise enterprise = (EEnterprise) map.get("enterprise");
+        //插入数据库
+        EEnterprise json = eEnterpriseService.registerEnterprise(enterprise);
+        HashMap<String, Object> loginMap = new HashMap<>();
+        loginMap.put("message", "注册成功");
+        loginMap.put("success", true);
+        loginMap.put("data", json);
+        return loginMap;
+    }
+
+
     /**
      * 验证码图片
      */
