@@ -15,7 +15,8 @@ import java.util.Date;
 @Table(name = "w_banner")
 @org.hibernate.annotations.Table(appliesTo = "w_banner", comment = "首页banner图")
 public class WBanner  implements Serializable {
-    private static final long serialVersionUID = 156878262756870L;
+    private static final long serialVersionUID = 1568784262756870L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic
@@ -48,10 +49,10 @@ public class WBanner  implements Serializable {
     @Column(name = "img", columnDefinition = "varchar(255) COMMENT '图片地址'")
     private String img;
     @Basic
-    @Column(name = "isshow", length = 10, columnDefinition = "int COMMENT default '0' '是否显示{0:否,1:是}'")
+    @Column(name = "isshow",  columnDefinition = "int default '0' COMMENT '是否显示{0:否,1:是}'")
     private Integer isshow;
     @Basic
-    @Column(name = "position", length = 10, columnDefinition = "int COMMENT default '0' '显示位置{1:首页}'")
+    @Column(name = "position", columnDefinition = "int default '0' COMMENT '显示位置{1:首页}'")
     private Integer position;
 }
 
