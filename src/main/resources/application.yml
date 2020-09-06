@@ -15,7 +15,7 @@ spring:
     open-in-view: false
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/config?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://34.92.208.10:3306/config?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: because
     driver-class-name: com.mysql.cj.jdbc.Driver
