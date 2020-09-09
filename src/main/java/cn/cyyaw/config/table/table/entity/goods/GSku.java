@@ -12,10 +12,10 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "g_goods")
-@org.hibernate.annotations.Table(appliesTo = "g_goods", comment = "商品表")
-public class GGoods implements Serializable {
-    private static final long serialVersionUID = 15687826273933758L;
+@Table(name = "g_sku")
+@org.hibernate.annotations.Table(appliesTo = "g_sku", comment = "商品sku表")
+public class GSku implements Serializable {
+    private static final long serialVersionUID = 15127826273933758L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,35 +38,19 @@ public class GGoods implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
+    @Basic
+    @Column(name = "goodsid", columnDefinition = "varchar(32) not null COMMENT '商品表ID'")
+    private String goodsid;
 
     @Basic
-    @Column(name = "name",  columnDefinition = "varchar(255) not null COMMENT '商品名称'")
-    private String name;
-    @Basic
-    @Column(name="price", columnDefinition = "decimal(18,2 ) COMMENT '价格'")
+    @Column(name="price", columnDefinition = "decimal(18,2) COMMENT '价格'")
     private BigDecimal price;
-    @Basic
-    @Column(name="lowprice", columnDefinition = "decimal(18,2 ) COMMENT '最低价格'")
-    private BigDecimal lowprice;
-    @Basic
-    @Column(name="highprice", columnDefinition = "decimal(18,2 ) COMMENT '最高价格'")
-    private BigDecimal highprice;
-
-
-    @Basic
-    @Column(name = "typecode",   length = 32, columnDefinition = "varchar(32) COMMENT '品类Code'")
-    private String typecode;
-    @Basic
-    @Column(name = "brandcode",   length = 32, columnDefinition = "varchar(32) COMMENT '品牌Code'")
-    private String brandcode;
-
-
     @Basic
     @Column(name = "photo",  columnDefinition = "varchar(255) COMMENT '商品图片'")
     private String photo;
-
-
-
+    @Basic
+    @Column(name = "attribute",  columnDefinition = "varchar(255) COMMENT 'json商品属性'")
+    private String attribute;
 
 
 }

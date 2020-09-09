@@ -1,4 +1,4 @@
-package cn.cyyaw.config.admin.service.impl;
+package cn.cyyaw.config.admin;
 
 public class LoginConstants {
 

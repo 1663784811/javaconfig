@@ -25,7 +25,7 @@ public class GoodsController {
     /**
      * 搜索商品
      */
-    @PostMapping("/photo")
+    @PostMapping("/searchGoods")
     public void searchGoods(@RequestBody Map<String,Object> map){
         JSONObject json = new JSONObject();
         for (String key: map.keySet()) {
