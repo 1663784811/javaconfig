@@ -1,12 +1,8 @@
 package cn.cyyaw.config.home.controller.user;
 
 import cn.cyyaw.common.util.StringUtilWHY;
-import cn.cyyaw.config.admin.service.LoginService;
-import cn.cyyaw.config.config.shiro.ShiroEnum;
-import cn.cyyaw.config.table.table.entity.tadmin.TAdmin;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
+import cn.cyyaw.config.home.service.UUserService;
+import cn.cyyaw.config.table.table.entity.user.UUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +18,9 @@ import java.util.Map;
 @RestController
 public class UserLoginController {
 
+
     @Autowired
-    private LoginService loginService;
+    private UUserService uUserService;
 
     /**
      * 登录
@@ -32,14 +29,12 @@ public class UserLoginController {
     public Map login(@RequestBody HashMap<String, String> map) {
         //第一步：验证验证码
         //第二步：登录
-        Subject subject = SecurityUtils.getSubject();
-        if (subject != null)
-            subject.logout();
-        UsernamePasswordToken token = new UsernamePasswordToken(map.get("account"), map.get("password"), "127.0.0.1");
-        subject.login(token);
+        String account = map.get("account");
+        String password = map.get("password");
+        UUser uUser = uUserService.findByAccountAndPassword(account, password);
         HashMap<String, Object> loginMap = new HashMap<String, Object>();
-        loginMap.put("token", subject.getSession().getId());
-        loginMap.put("data", subject.getSession().getAttribute(ShiroEnum.USERINFO));
+        loginMap.put("token", "123456");
+        loginMap.put("data", uUser);
         loginMap.put("message", "登录成功");
         loginMap.put("success", true);
         return loginMap;
@@ -50,9 +45,6 @@ public class UserLoginController {
      */
     @RequestMapping("/logout")
     public Map logout() {
-        Subject subject = SecurityUtils.getSubject();
-        if (subject != null)
-            subject.logout();
         HashMap<String, Object> loginMap = new HashMap<>();
         loginMap.put("success", true);
         loginMap.put("message", "退出成功");
@@ -63,19 +55,16 @@ public class UserLoginController {
      * 注册
      */
     @PostMapping("/register")
-    public Map register(@RequestBody TAdmin tAdmin) {
+    public Map register(@RequestBody UUser uUser) {
         //第一步：验证
         //插入数据库
-        Subject subject = SecurityUtils.getSubject();
-        if (subject != null) subject.logout();
-        TAdmin register = loginService.register(tAdmin);
-        UsernamePasswordToken token = new UsernamePasswordToken(register.getAccount(), tAdmin.getPassword());
-        subject.login(token);
+        uUser.setTid(StringUtilWHY.getUUID());
+        uUser.setCreatetime(new Date());
+        UUser user = uUserService.save(uUser);
         HashMap<String, Object> loginMap = new HashMap<>();
-        loginMap.put("token", subject.getSession().getId());
         loginMap.put("message", "注册成功");
         loginMap.put("success", true);
-        loginMap.put("data", subject.getSession().getAttribute(ShiroEnum.USERINFO));
+        loginMap.put("data", user);
         return loginMap;
     }
     /**
