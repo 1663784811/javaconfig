@@ -31,6 +31,7 @@ public class UserInfoController {
     /**
      * 获取个人中心信息：  余额、购物卡 、积分 、优惠券
      */
+    @PostMapping("/getUserCenterInfo")
     public void getUserCenterInfo(){
 
     }

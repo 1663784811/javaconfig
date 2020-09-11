@@ -28,7 +28,7 @@ public class UUserServiceImpl extends BaseService<UUser, Integer> implements UUs
 
     @Override
     public UUser findByAccountAndPassword(String account, String password) {
-        List<UUser> uUsers = uUserDao.findByAccountAndPassword(account);
+        List<UUser> uUsers = uUserDao.findByAccount(account);
         if(uUsers.size() == 1){
             UUser uUser = uUsers.get(0);
             String pwd = uUser.getPassword();
