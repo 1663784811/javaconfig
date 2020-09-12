@@ -25,7 +25,7 @@ public class GGoodsController {
     @Autowired
     private GGoodsService gGoodsService;
 
-    @PostMapping("saveGoods")
+    @PostMapping("/saveGoods")
     public void saveGoods(@RequestBody Map<String,Object> map){
         JSONObject json = new JSONObject();
         for (String key: map.keySet()) {

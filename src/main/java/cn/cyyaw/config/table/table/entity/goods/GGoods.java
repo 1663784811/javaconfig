@@ -26,7 +26,7 @@ public class GGoods implements Serializable {
     @Column(name = "tid", unique = true, length = 32, columnDefinition = "varchar(32) not null COMMENT 'tid'")
     private String tid;
     @Basic
-    @Column(name = "del", length = 10, columnDefinition = "int COMMENT '是否删除{0:否,1:是}'")
+    @Column(name = "del", length = 10, columnDefinition = "int default '0' COMMENT '是否删除{0:否,1:是}'")
     private Integer del;
     @Basic
     @Column(name = "note", columnDefinition = "varchar(255) COMMENT '备注'")

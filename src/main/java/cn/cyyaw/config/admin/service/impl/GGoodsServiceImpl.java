@@ -1,5 +1,7 @@
 package cn.cyyaw.config.admin.service.impl;
 
+import cn.cyyaw.common.util.StringUtilWHY;
+import cn.cyyaw.common.util.WhyException;
 import cn.cyyaw.config.admin.service.GGoodsService;
 import cn.cyyaw.config.table.table.dao.goods.GDetailsDao;
 import cn.cyyaw.config.table.table.dao.goods.GGoodsDao;
@@ -43,6 +45,15 @@ public class GGoodsServiceImpl implements GGoodsService {
     @Override
     public GGoods saveGoods(GGoods gGoods, List<GPhoto> photoList, List<GSku> skuList, GDetails gDetails) {
         // === 第一步: 保存商品数据
+        if(null == gGoods.getTid()){
+            gGoods.setTid(StringUtilWHY.getUUID());
+        }
+        if(null == gGoods.getCreatetime()){
+            gGoods.setCreatetime(new Date());
+        }
+        if(StringUtilWHY.isEmpty(gGoods.getName())){
+           throw new WhyException("请输入商品名称");
+        }
         GGoods goods = gGoodsDao.save(gGoods);
         String goodsTid = goods.getTid();
         // === 第二步: 保存图片列表
@@ -59,6 +70,9 @@ public class GGoodsServiceImpl implements GGoodsService {
             GSku sku = skuList.get(i);
             if(null == sku.getCreatetime()){
                 sku.setCreatetime(new Date());
+            }
+            if(null == sku.getTid()){
+                sku.setTid(StringUtilWHY.getUUID());
             }
             sku.setGoodsid(goodsTid);
             gSkuDao.save(sku);
