@@ -14,11 +14,11 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "g_goods_search")
-@org.hibernate.annotations.Table(appliesTo = "g_goods_search", comment = "商品搜索表")
-public class GGoodsSearch  implements Serializable {
+@Table(name = "g_store_goods")
+@org.hibernate.annotations.Table(appliesTo = "g_store_goods", comment = "门店商品")
+public class GStoreGoods implements Serializable {
 
-    private static final long serialVersionUID = 156878262734233758L;
+    private static final long serialVersionUID = 156878232734233758L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,25 +41,17 @@ public class GGoodsSearch  implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createtime;
 
-
-
     @Basic
     @Column(name = "goodsid", unique = true, columnDefinition = "varchar(32) not null COMMENT '商品ID'")
     private String goodsid;
 
     @Basic
-    @Column(name = "storegoodsid", columnDefinition = "varchar(32) not null COMMENT '所属商品门店e_storeid表ID'")
-    private String storegoodsid;
+    @Column(name = "storeid", columnDefinition = "varchar(32) not null COMMENT '所属门店e_storeid表ID'")
+    private String storeid;
 
     @Basic
-    @Column(name = "name",  columnDefinition = "varchar(255) not null COMMENT '商品名称'")
-    private String name;
-    @Basic
-    @Column(name = "typecode",   length = 32, columnDefinition = "varchar(32) COMMENT '品类Code'")
-    private String typecode;
-    @Basic
-    @Column(name = "brandcode",   length = 32, columnDefinition = "varchar(32) COMMENT '品牌Code'")
-    private String brandcode;
+    @Column(name = "istop", columnDefinition = "int not null default '0' COMMENT '是否置顶{0:否,1:是}'")
+    private Integer istop;
 
     @Basic
     @Column(name="lowprice", columnDefinition = "decimal(18,2 ) COMMENT '最低价格'")
@@ -68,12 +60,9 @@ public class GGoodsSearch  implements Serializable {
     @Column(name="highprice", columnDefinition = "decimal(18,2 ) COMMENT '最高价格'")
     private BigDecimal highprice;
 
-
     @Basic
-    @Column(name = "istop", columnDefinition = "int not null default '0' COMMENT '是否置顶{0:否,1:是}'")
-    private Integer istop;
-
-
+    @Column(name="number", columnDefinition = "int not null default '0' COMMENT '虚拟库存数量'")
+    private Integer number;
 
 
 

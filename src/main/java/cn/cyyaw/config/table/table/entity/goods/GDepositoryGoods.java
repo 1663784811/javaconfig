@@ -54,7 +54,7 @@ public class GDepositoryGoods implements Serializable {
     private Integer type;
 
     @Basic
-    @Column(name = "describe", columnDefinition = "varchar(255) COMMENT '描述'")
-    private String describe;
+    @Column(name = "details", columnDefinition = "varchar(255) COMMENT '描述'")
+    private String details;
 
 }
