@@ -12,6 +12,7 @@ import cn.cyyaw.config.table.table.entity.goods.GGoods;
 import cn.cyyaw.config.table.table.entity.goods.GPhoto;
 import cn.cyyaw.config.table.table.entity.goods.GSku;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -42,6 +43,7 @@ public class GGoodsServiceImpl implements GGoodsService {
      * @param gDetails
      * @return
      */
+    @Transient
     @Override
     public GGoods saveGoods(GGoods gGoods, List<GPhoto> photoList, List<GSku> skuList, GDetails gDetails) {
         // === 第一步: 保存商品数据
@@ -52,7 +54,7 @@ public class GGoodsServiceImpl implements GGoodsService {
             gGoods.setCreatetime(new Date());
         }
         if(StringUtilWHY.isEmpty(gGoods.getName())){
-           throw new WhyException("请输入商品名称");
+           throw new WhyException("请输入商品名称",6000);
         }
         GGoods goods = gGoodsDao.save(gGoods);
         String goodsTid = goods.getTid();
@@ -81,6 +83,7 @@ public class GGoodsServiceImpl implements GGoodsService {
         if(null == gDetails.getCreatetime()){
             gDetails.setCreatetime(new Date());
         }
+        gDetails.setGoodsid(goodsTid);
         gDetailsDao.save(gDetails);
         return goods;
     }

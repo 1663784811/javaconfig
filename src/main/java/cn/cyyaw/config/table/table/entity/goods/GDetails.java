@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "g_details")
 @org.hibernate.annotations.Table(appliesTo = "g_details", comment = "商品详情表")
 public class GDetails implements Serializable {
-    private static final long serialVersionUID = 156837826623933758L;
+    private static final long serialVersionUID = 1568777826623933758L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
