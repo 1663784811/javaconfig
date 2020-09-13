@@ -72,7 +72,9 @@ public class GGoodsSearch  implements Serializable {
     @Basic
     @Column(name = "istop", columnDefinition = "int not null default '0' COMMENT '是否置顶{0:否,1:是}'")
     private Integer istop;
-
+    @Basic
+    @Column(name = "evaluate", columnDefinition = "int not null default '0' COMMENT '评价{0:0星,1:1星,2:2星,3:3星,4:4星,5:5星}'")
+    private Integer evaluate;
 
 
 
